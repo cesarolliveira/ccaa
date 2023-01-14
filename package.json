@@ -9,7 +9,8 @@
     "webpack-notifier": "^1.15.0"
   },
   "scripts": {
-    "watch": "webpack --watch --progress"
+    "watch": "webpack --watch --progress",
+    "build": "webpack --progress"
   },
   "dependencies": {
     "bootstrap-select": "^1.13.18",
