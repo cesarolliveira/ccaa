@@ -1,0 +1,25 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Cadastrar Lançamento
+{% endblock %}
+
+{% block pageName %}
+    Cadastrar Lançamento
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">Lançamento</li>
+    <li class="breadcrumb-item active">Cadastrar Lançamento</li>
+{% endblock %}
+
+{% block content %}
+
+    {{ include('lancamento/_form.html.twig') }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/lancamento/new') }}
+{% endblock %}

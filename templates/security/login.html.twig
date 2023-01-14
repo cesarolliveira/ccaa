@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/styles/login/login.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="card border-0 shadow">
+                <img src="{{ asset('build/default/ccaa-icon.png') }}" class="logo-image" alt="Logo CCAA">
+                <h3 class="text-center"><strong>Guaíra</strong></h3>
+                <div class="card-body">
+                    <form method="post">
+
+                        {% if error %}
+                            <div class="row">
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            </div>
+                        {% endif %}
+
+                        {% if app.user %}
+                            <div class="mb-3">
+                                Você está logado como {{ app.user.userIdentifier }}, 
+                                <a href="{{ path('app_dashboard') }}">continuar logado</a> ou 
+                                <a href="{{ path('app_logout') }}">sair</a>.
+                            </div>
+                        {% endif %}
+
+                       <div class="row">
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Login" required autofocus>
+                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Senha" required>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        </div>
+
+                        {# <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" name="_remember_me"> Manter conectado
+                            </label>
+                        
+                        </div> #}
+
+                        <div class="row">
+                            <button class="btn btn-lg btn-primary" type="submit">
+                                Login
+                            </button>
+                        </div>
+                    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

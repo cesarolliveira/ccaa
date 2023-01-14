@@ -1,0 +1,27 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Editar Aluno
+{% endblock %}
+
+{% block pageName %}
+    Editar Aluno
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Aluno
+    </li>
+    <li class="breadcrumb-item">
+        Editar Aluno
+    </li>
+    <li class="breadcrumb-item active active">
+        {{ aluno.nomeCompleto }}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    {{ include('aluno/_form.html.twig', {'button_label': 'Salvar'}) }}
+    
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Visualizar Curso
+{% endblock %}
+
+{% block pageName %}
+    Visualizar Curso
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Curso
+    </li>
+    <li class="breadcrumb-item">
+        Visualizar Curso
+    </li>
+    <li class="breadcrumb-item active active">
+        {{ curso.descricao }}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('app_curso_index') }}" class="btn btn-danger btn-sm text-white mb-2 shadow">
+                <i class="fa-solid fa-left-long"></i> Voltar
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+       <div class="col-12">
+            <div class="card border-0 mb-5 shadow">
+                <div class="card-body">
+
+                    {{ include('curso/_entity.html.twig') }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

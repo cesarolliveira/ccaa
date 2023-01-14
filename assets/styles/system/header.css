@@ -1,0 +1,13 @@
+.logo-image-header {
+    width: 20% !important;
+    height: 20% !important;
+    object-fit: contain;
+    margin-left: auto !important;
+}
+
+.cidade {
+    vertical-align: middle;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-left: 1rem !important;
+}

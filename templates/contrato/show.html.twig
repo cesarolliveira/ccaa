@@ -1,0 +1,45 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Visualizar Contrato
+{% endblock %}
+
+{% block pageName %}
+    Visualizar Contrato
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Contrato
+    </li>
+    <li class="breadcrumb-item">
+        Visualizar Contrato
+    </li>
+    <li class="breadcrumb-item active active">
+        {{ contrato.aluno.nomeCompleto }}
+    </li>
+{% endblock %}
+
+{% block content %}
+    
+    <div class="row">
+       <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('app_contrato_index') }}" class="btn btn-danger btn-sm text-white mb-2 shadow">
+                <i class="fa-solid fa-left-long"></i> Voltar
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+       <div class="col-12">
+            <div class="card border-0 mb-5 shadow">
+                <div class="card-body">
+
+                    {{ include('contrato/_entity.html.twig') }}
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

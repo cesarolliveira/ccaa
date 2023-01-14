@@ -1,0 +1,24 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Cadastrar Aluno
+{% endblock %}
+
+{% block pageName %}
+    Cadastrar Aluno
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Aluno
+    </li>
+    <li class="breadcrumb-item active">
+        Cadastrar Aluno
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    {{ include('aluno/_form.html.twig') }}
+
+{% endblock %}

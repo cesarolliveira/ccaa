@@ -1,0 +1,32 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Editar Lançamento
+{% endblock %}
+
+{% block pageName %}
+    Editar Lançamento
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Lançamento
+    </li>
+    <li class="breadcrumb-item">
+        Editar Lançamento
+    </li>
+    <li class="breadcrumb-item active active">
+        {{ lancamento.descricao }}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    {{ include('lancamento/_form.html.twig', {'button_label': 'Salvar'}) }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/lancamento/edit') }}
+{% endblock %}

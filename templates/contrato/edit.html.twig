@@ -1,0 +1,32 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Editar Contrato
+{% endblock %}
+
+{% block pageName %}
+    Editar Contrato
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Contrato
+    </li>
+    <li class="breadcrumb-item">
+        Editar Contrato
+    </li>
+    <li class="breadcrumb-item active active">
+        {{ contrato.aluno.nomeCompleto }}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    {{ include('contrato/_form.html.twig', {'button_label': 'Salvar'}) }}
+    
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/contrato/edit') }}
+{% endblock %}

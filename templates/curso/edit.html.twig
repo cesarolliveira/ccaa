@@ -1,0 +1,32 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Editar Curso
+{% endblock %}
+
+{% block pageName %}
+    Editar Curso
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Curso
+    </li>
+    <li class="breadcrumb-item">
+        Editar Curso
+    </li>
+    <li class="breadcrumb-item active active">
+        {{ curso.descricao }}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    {{ include('curso/_form.html.twig', {'button_label': 'Salvar'}) }}
+    
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/curso/edit') }}
+{% endblock %}

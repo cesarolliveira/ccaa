@@ -1,0 +1,104 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Alunos
+{% endblock %}
+
+{% block pageName %}
+    Alunos
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item active">Alunos</li>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+       <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('app_aluno_new') }}" class="btn btn-info btn-sm text-white mb-2 shadow">
+                <i class="fa-solid fa-plus"></i> Cadastrar
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+       <div class="col-12">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <table class="table table-hover table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th class="align-middle">
+                                    Aluno
+                                </th>
+                                <th class="align-middle">
+                                    Responsável
+                                </th>
+                                <th class="text-center align-middle">
+                                    Nacionalidade
+                                </th>
+                                <th class="text-center align-middle">
+                                    Situação
+                                </th>
+                                <th class="text-center align-middle">
+                                    Opções
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in pagination %}
+                                <tr {% if loop.index is odd %}class="color"{% endif %}>
+                                    <td class="align-middle">
+                                        {{ item.nomeCompleto }}
+                                    </td>
+                                    <td class="align-middle">
+                                        {{ item.NomeResponsavel }}
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        {{ item.endereco.pais }}
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        {% if item.situacao == constant('App\\Enum\\SituacaoEnum::ATIVO') %}
+                                            <span class="badge bg-success">ATIVO</span>
+                                        {% else %}
+                                            <span class="badge bg-danger">INATIVO</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <div class="btn-group btn-group-sm mt-1 mb-1 shadow-sm" role="group">
+                                            <a class="btn btn-info text-white" href="{{ path('app_aluno_show', {'id': item.id}) }}">
+                                                <i class="fa-solid fa-eye"></i> Visualizar
+                                            </a>
+                                            <a class="btn btn-info text-white" href="{{ path('app_aluno_edit', {'id': item.id}) }}">
+                                                <i class="fa-solid fa-pen-to-square"></i> Editar
+                                            </a>
+                                            {% include 'aluno/_delete_form.html.twig' with {'id': item.id} %}
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td class="text-center" colspan="5">
+                                        Nenhum registro encontrado!
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        <tbody>
+                    </table>
+                    <div class="d-flex justify-content-center">
+                        <div class="navigation">
+                            {{ knp_pagination_render(pagination) }}
+                        </div> 
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="count">
+                        {{ 'Total de registros: ' ~ pagination.getTotalItemCount }}
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

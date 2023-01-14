@@ -1,0 +1,24 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Cadastrar Curso
+{% endblock %}
+
+{% block pageName %}
+    Cadastrar Curso
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Curso
+    </li>
+    <li class="breadcrumb-item active">
+        Cadastrar Curso
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    {{ include('curso/_form.html.twig') }}
+
+{% endblock %}

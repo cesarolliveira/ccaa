@@ -1,0 +1,29 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Cadastrar Contrato
+{% endblock %}
+
+{% block pageName %}
+    Cadastrar Contrato
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Contrato
+    </li>
+    <li class="breadcrumb-item active">
+        Cadastrar Contrato
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    {{ include('contrato/_form.html.twig') }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/contrato/new') }}
+{% endblock %}

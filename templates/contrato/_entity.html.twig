@@ -1,0 +1,81 @@
+{# DADOS DO CONTRATO #}
+<div class="row">
+    <div class="col-12">
+        <h2>Dados do Contrato</h2>
+        <hr />
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-12">
+        <label class="form-label">
+            Descrição
+        </label>
+        <input type="text" class="form-control" value="{{ contrato.descricao }}" disabled/>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-12">
+        <label class="form-label">
+            Curso
+        </label>
+        <input type="text" class="form-control" value="{{ contrato.curso.descricao }}" disabled/>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-12">
+        <label class="form-label">
+            Ementa
+        </label>
+        <textarea type="text" class="form-control" disabled>{{ contrato.curso.ementa }}</textarea>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-2">
+        <label class="form-label">
+            Forma de Pagamento
+        </label>
+        <input type="text" class="form-control" value="{{ contrato.formaPagamento }}" disabled/>
+    </div>
+    <div class="col-2">
+        <label class="form-label">
+            Parcelas
+        </label>
+        <input type="text" class="form-control" value="{{ contrato.parcelas }}" disabled/>
+    </div>
+    <div class="col-2">
+        <label class="form-label">
+            Vencimento
+        </label>
+        <input type="text" class="form-control" value="{{ contrato.vencimento }}" disabled/>
+    </div>
+    <div class="col-2">
+        <label class="form-label">
+            Valor
+        </label>
+        <input type="text" class="form-control" value="{{ contrato.valor|number_format(2, ',', '.') }}" disabled/>
+    </div>
+    <div class="col-2">
+        <label class="form-label">
+            Desconto
+        </label>
+        <input type="text" class="form-control" value="{{ contrato.desconto|number_format(2, ',', '.') }}" disabled/>
+    </div>
+    <div class="col-2">
+        <label class="form-label">
+            Situação
+        </label>
+        <input type="text" class="form-control" value="{{ contrato.situacao }}" disabled/>
+    </div>
+</div>
+
+<br />
+
+{# DADOS DO ALUNO #}
+<div class="row">
+    <div class="col-12">
+        <h2>Dados do Aluno</h2>
+        <hr />
+    </div>
+</div>
+
+{% include 'aluno/_entity.html.twig' with {'aluno': contrato.aluno } %}

@@ -1,0 +1,66 @@
+<div class="row mb-2">
+    <div class="col-12">
+        <label class="form-label">
+            Descrição
+        </label>
+        <input type="text" class="form-control" value="{{ lancamento.descricao }}" disabled/>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-6">
+        <label class="form-label">
+            Tipo do Lançamento
+        </label>
+        <input type="text" class="form-control" value="{{ lancamento.tipoLancamento }}" disabled/>
+    </div>
+    <div class="col-6">
+        <label class="form-label">
+            Forma de Pagamento
+        </label>
+        <input type="text" class="form-control" value="{{ lancamento.formaPagamento }}" disabled/>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-4">
+        <label class="form-label">
+            Parcela
+        </label>
+        <input type="text" class="form-control" value="{{ lancamento.parcela == null ? 'Única' : lancamento.parcela }}" disabled/>
+    </div>
+    <div class="col-4">
+        <label class="form-label">
+            Vencimento
+        </label>
+        <input type="text" class="form-control" value="{{ lancamento.vencimento|date('d/m/Y') }}" disabled/>
+    </div>
+    <div class="col-4">
+        <label class="form-label">
+            Valor
+        </label>
+        <input type="text" class="form-control" value="{{ lancamento.valor|number_format(2, ',', '.') }}" disabled/>
+    </div>
+    
+</div>
+<div class="row mb-2">
+    <div class="col-12">
+        <label class="form-label">
+            Observação
+        </label>
+        <input type="text" class="form-control" value="{{ lancamento.observacao }}" disabled/>
+    </div>
+</div>
+
+<br />
+
+{% if lancamento.aluno is defined and lancamento.aluno != null %}
+
+    <div class="row mb-2">
+        <div class="col-12">
+           <h3>Dados do Aluno</h3>
+           <hr>
+        </div>
+    </div>
+
+    {% include 'aluno/_entity.html.twig' with {'aluno': lancamento.aluno } %}
+    
+{% endif %}

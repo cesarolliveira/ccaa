@@ -1,0 +1,53 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Visualizar Lançamento
+{% endblock %}
+
+{% block pageName %}
+    Visualizar Lançamento
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Lançamento
+    </li>
+    <li class="breadcrumb-item">
+        Visualizar Lançamento
+    </li>
+    <li class="breadcrumb-item active active">
+        {{ lancamento.descricao }}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('app_lancamento_index') }}" class="btn btn-danger btn-sm text-white mb-2 shadow">
+                <i class="fa-solid fa-left-long"></i> Voltar
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+                <div class="card border-0 mb-5 shadow">
+                    <div class="card-body">
+
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <h3>Dados do Lançamento</h3>
+                                <hr>
+                            </div>
+                        </div>
+
+                        {{ include('lancamento/_entity.html.twig') }}
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
