@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Curso;
 use App\Form\CursoType;
 use App\Service\CursoService;
-use App\Repository\CursoRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/curso')]
@@ -18,12 +19,12 @@ class CursoController extends AbstractController
 
     public function __construct(
         CursoService $cursoService
-    )
-    {
+    ) {
         $this->cursoService = $cursoService;
     }
 
     #[Route('/', name: 'app_curso_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(Request $request): Response
     {
         if (!$this->cursoService->canListar($this->getUser())) {
@@ -36,6 +37,7 @@ class CursoController extends AbstractController
     }
 
     #[Route('/new', name: 'app_curso_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request): Response
     {
         $curso = new Curso();
@@ -55,6 +57,7 @@ class CursoController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_curso_show', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function show(Curso $curso): Response
     {
         if (!$this->cursoService->canVisualizar($this->getUser())) {
@@ -67,6 +70,7 @@ class CursoController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_curso_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function edit(Request $request, Curso $curso): Response
     {
         if (!$this->cursoService->canEditar($this->getUser())) {
@@ -89,6 +93,7 @@ class CursoController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_curso_delete', methods: ['POST'])]
+    #[Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_GERENTE')")]
     public function delete(Request $request, Curso $curso): Response
     {
         if (!$this->cursoService->canExcluir($this->getUser())) {

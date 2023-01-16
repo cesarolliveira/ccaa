@@ -3,23 +3,24 @@
     <div class="sb-sidenav-menu">
       <div class="nav">
 
-        {% if is_granted('ROLE_ADMIN') %}
-          <div class="sb-sidenav-menu-heading">Administração</div>
-
-          <a class="nav-link" href="{{ path('app_dashboard') }}">
-            <div class="sb-nav-link-icon">
-              <i class="fas fa-tachometer-alt"></i>
-            </div>
-            Dashboard
-          </a>
-
+        <div class="sb-sidenav-menu-heading">Administração</div>
+        
+        <a class="nav-link" href="{{ path('app_dashboard') }}">
+          <div class="sb-nav-link-icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          Dashboard
+        </a>
+        
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GERENTE') %}
+          
           <a class="nav-link" href="{{ path('app_user_index') }}">
             <div class="sb-nav-link-icon">
               <i class="fa-solid fa-users"></i>
             </div>
             Usuários
           </a>
-
+        
         {% endif %}
 
         <div class="sb-sidenav-menu-heading">Gestão Escolar</div>

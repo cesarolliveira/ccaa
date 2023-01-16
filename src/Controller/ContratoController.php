@@ -8,6 +8,8 @@ use App\Service\ContratoService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/contrato')]
@@ -17,12 +19,12 @@ class ContratoController extends AbstractController
 
     public function __construct(
         ContratoService $contratoService
-    )
-    {
+    ) {
         $this->contratoService = $contratoService;
     }
 
     #[Route('/', name: 'app_contrato_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(Request $request): Response
     {
         if (!$this->contratoService->canListar($this->getUser())) {
@@ -35,6 +37,7 @@ class ContratoController extends AbstractController
     }
 
     #[Route('/new', name: 'app_contrato_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request): Response
     {
         if (!$this->contratoService->canCadastrar($this->getUser())) {
@@ -59,6 +62,7 @@ class ContratoController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_contrato_show', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function show(Contrato $contrato): Response
     {
         if (!$this->contratoService->canVisualizar($this->getUser())) {
@@ -71,6 +75,7 @@ class ContratoController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_contrato_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function edit(Request $request, Contrato $contrato): Response
     {
         if (!$this->contratoService->canEditar($this->getUser())) {
@@ -93,6 +98,7 @@ class ContratoController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_contrato_delete', methods: ['POST'])]
+    #[Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_GERENTE')")]
     public function delete(Request $request, Contrato $contrato): Response
     {
         if (!$this->contratoService->canExcluir($this->getUser())) {
