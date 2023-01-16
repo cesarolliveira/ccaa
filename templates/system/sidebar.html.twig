@@ -4,7 +4,7 @@
       <div class="nav">
 
         {% if is_granted('ROLE_ADMIN') %}
-          <div class="sb-sidenav-menu-heading">Principal</div>
+          <div class="sb-sidenav-menu-heading">Administração</div>
 
           <a class="nav-link" href="{{ path('app_dashboard') }}">
             <div class="sb-nav-link-icon">
@@ -12,23 +12,30 @@
             </div>
             Dashboard
           </a>
+
+          <a class="nav-link" href="{{ path('app_user_index') }}">
+            <div class="sb-nav-link-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            Usuários
+          </a>
+
         {% endif %}
-        
 
         <div class="sb-sidenav-menu-heading">Gestão Escolar</div>
+
+        <a class="nav-link" href="{{ path('app_aluno_index') }}">
+          <div class="sb-nav-link-icon">
+            <i class="fa-solid fa-address-card"></i>
+          </div>
+          Alunos
+        </a>
 
         <a class="nav-link" href="{{ path('app_curso_index') }}">
           <div class="sb-nav-link-icon">
             <i class="fa-solid fa-chalkboard-user"></i>
           </div>
           Cursos
-        </a>
-
-        <a class="nav-link" href="{{ path('app_aluno_index') }}">
-          <div class="sb-nav-link-icon">
-            <i class="fa-solid fa-circle-user"></i>
-          </div>
-          Alunos
         </a>
 
         <div class="sb-sidenav-menu-heading">Gestão Financeira</div>

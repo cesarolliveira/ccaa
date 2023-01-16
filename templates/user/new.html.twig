@@ -1,0 +1,24 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Cadastrar Usuário
+{% endblock %}
+
+{% block pageName %}
+    Cadastrar Usuário
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Usuário
+    </li>
+    <li class="breadcrumb-item active">
+        Cadastrar Usuário
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    {{ include('user/_form.html.twig') }}
+
+{% endblock %}

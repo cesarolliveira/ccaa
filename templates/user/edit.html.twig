@@ -1,0 +1,27 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    Editar Usuário
+{% endblock %}
+
+{% block pageName %}
+    Editar Usuário
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        Usuário
+    </li>
+    <li class="breadcrumb-item">
+        Editar Usuário
+    </li>
+    <li class="breadcrumb-item active active">
+        {{ user.email }}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    {{ include('user/_form.html.twig', {'button_label': 'Salvar'}) }}
+    
+{% endblock %}

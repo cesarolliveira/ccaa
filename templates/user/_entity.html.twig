@@ -1,0 +1,24 @@
+<div class="row mb-2">
+    <div class="col-12">
+        <label class="form-label">
+            E-mail
+        </label>
+        <input type="text" class="form-control" value="{{ user.email }}" disabled/>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-12">
+        <label class="form-label">
+            Permissões
+        </label>
+
+        <br />
+
+        {% for item in user.roles %}
+            {% if item != 'ROLE_USER' %}
+                    <span class="badge bg-secondary">{{ item|replace({'ROLE_': ''}) }}</span>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+</div>

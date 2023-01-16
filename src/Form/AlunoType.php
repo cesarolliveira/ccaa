@@ -74,7 +74,6 @@ class AlunoType extends AbstractType
                 FormEvents::PRE_SET_DATA,
                 [$this, 'onPreSetData']
             )
-
         ;
     }
 
