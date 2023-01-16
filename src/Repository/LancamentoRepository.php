@@ -101,7 +101,7 @@ class LancamentoRepository extends ServiceEntityRepository
             ->andWhere($expr->lt('lancamento.vencimento', ':diaAtual'))
             ->andWhere($expr->eq('lancamento.situacao', ':pendente'))
             ->setParameter('diaAtual', new \DateTime('today'))
-            ->setParameter('pendente', SituacaoLancamentoEnum::VENCIDO)
+            ->setParameter('pendente', SituacaoLancamentoEnum::PENDENTE)
         ;
 
         return $qb->getQuery()->getResult();
