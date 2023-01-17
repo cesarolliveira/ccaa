@@ -11705,3 +11705,8 @@ body {
   border-top-left-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
 }
+
+/* AJUSTE NO CAMPO DE DATA */
+.col-form-label.required {
+  padding-top: 0px !important;
+}

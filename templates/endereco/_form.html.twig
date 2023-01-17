@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-12">
+        <h2>
+            {{ 'entity.endereco'|trans(locale = userLocate) }}
+        </h2>
+        <hr />
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-8">
+            {% if form.endereco.logradouro is defined %}
+                {{ form_row(form.endereco.logradouro) }}
+            {% endif %}
+        </div>
+        <div class="col-4">
+            {% if form.endereco.numero is defined %}
+                {{ form_row(form.endereco.numero) }}
+            {% endif %}
+        </div>
+    </div>
+
+<div class="row mb-2">
+    <div class="col-4">
+        {{ form_row(form.endereco.bairro) }}
+    </div>
+    <div class="col-4">
+        {{ form_row(form.endereco.cidade) }}
+    </div>
+    <div class="col-4">
+        {{ form_row(form.endereco.pais) }}
+    </div>
+</div>

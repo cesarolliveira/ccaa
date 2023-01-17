@@ -1,13 +1,13 @@
 <div class="row mb-2">
     <div class="col-8">
         <label class="form-label">
-            Logradouro
+            {{ 'entity.endereco.logradouro'|trans(locale = userLocate) }}
         </label>
         <input type="text" class="form-control" value="{{ entity.endereco.logradouro }}" disabled/>
     </div>
     <div class="col-4">
         <label class="form-label">
-            Numero
+            {{ 'entity.endereco.numero'|trans(locale = userLocate) }}
         </label>
         <input type="text" class="form-control" value="{{ entity.endereco.numero }}" disabled/>
     </div>
@@ -15,19 +15,19 @@
 <div class="row mb-2">
     <div class="col-4">
         <label class="form-label">
-            Bairro
+            {{ 'entity.endereco.bairro'|trans(locale = userLocate) }}
         </label>
         <input type="text" class="form-control" value="{{ entity.endereco.bairro }}" disabled/>
     </div>
     <div class="col-4">
         <label class="form-label">
-            Cidade
+            {{ 'entity.endereco.cidade'|trans(locale = userLocate) }}
         </label>
         <input type="text" class="form-control" value="{{ entity.endereco.cidade }}" disabled/>
     </div>
     <div class="col-4">
         <label class="form-label">
-            País
+            {{ 'entity.endereco.pais'|trans(locale = userLocate) }}
         </label>
         <input type="text" class="form-control" value="{{ entity.endereco.pais }}" disabled/>
     </div>

@@ -3,13 +3,12 @@
 namespace App\Service;
 
 use App\Entity\User;
-use App\Entity\Lancamento;
-use App\Enum\SituacaoEnum;
 use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Security;
 
 class UserService
 {
@@ -19,14 +18,18 @@ class UserService
 
     private $passwordEncoder;
 
+    private $security;
+
     public function __construct(
         PaginatorInterface $paginator,
         UserRepository $userRepository,
-        UserPasswordHasherInterface $passwordEncoder
+        UserPasswordHasherInterface $passwordEncoder,
+        Security $security
     ) {
         $this->paginator = $paginator;
         $this->userRepository = $userRepository;
         $this->passwordEncoder = $passwordEncoder;
+        $this->security = $security;
     }
     public function canListar(User $user): bool
     {
@@ -82,5 +85,13 @@ class UserService
     public function excluir(User $user): void
     {
         $this->userRepository->remove($user, true);
+    }
+
+    public function getUserLocate(): string
+    {
+        /** @var User $user */
+        $user = $this->security->getUser();
+
+        return $user->getLocate();
     }
 }

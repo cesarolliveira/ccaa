@@ -1,0 +1,81 @@
+<div class="row">
+   <div class="col-12 d-flex justify-content-end">
+        <a href="{{ path('app_aluno_index') }}" class="btn btn-danger btn-sm text-white mb-2 shadow">
+            <i class="fa-solid fa-left-long"></i>
+            {{ 'grid.columns.voltar'|trans(locale = userLocate) }}
+        </a>
+    </div>
+</div>
+
+<div class="row">
+   <div class="col-12">
+        <div class="card border-0 mb-5 shadow">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col-8">
+                                    {{ form_row(form.nomeCompleto) }}
+                                </div>
+                                <div class="col-4">
+                                    {{ form_row(form.dataNascimento) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    {{ form_row(form.documentoCpf) }}
+                                </div>
+                                <div class="col-4">
+                                    {{ form_row(form.documentoRg) }}
+                                </div>
+                                <div class="col-4">
+                                    {{ form_row(form.naturalidade) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    {{ form_row(form.nomePai) }}
+                                </div>
+                                <div class="col-6">
+                                    {{ form_row(form.nomeMae) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    {{ form_row(form.nomeResponsavel) }}
+                                </div>
+                                <div class="col-3">
+                                    {{ form_row(form.responsavelCpf) }}
+                                </div>
+                                <div class="col-3">
+                                    {{ form_row(form.responsavelRg) }}
+                                </div>
+                            </div>
+                            {% if form.situacao is defined and form.situacao != null %}
+                                <div class="row">
+                                    <div class="col-12">
+                                        {{ form_row(form.situacao) }}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            
+                            <br />
+
+                            {% include 'endereco/_form.html.twig' with {'entity': form } %}
+                            
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-info text-white shadow-sm">
+                                        <i class="fa-solid fa-floppy-disk"></i>
+                                        {{ button_label|default('Salvar') }}
+                                    </button>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

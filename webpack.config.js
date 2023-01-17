@@ -42,7 +42,12 @@ Encore
     .addStyleEntry('styles/system/header', './assets/styles/system/header.css')
     .addStyleEntry('styles/system/sidebar', './assets/styles/system/sidebar.css')
 
-    // BUNDLES  
+    // BUNDLES
+    .addEntry('js/aluno/tipo_new', './assets/js/aluno/tipo_new.js')
+    .addEntry('js/aluno/new', './assets/js/aluno/new.js')
+    .addEntry('js/aluno/edit', './assets/js/aluno/edit.js')
+    .addEntry('js/user/new', './assets/js/user/new.js')
+    .addEntry('js/user/edit', './assets/js/user/edit.js')
     .addEntry('js/contrato/new', './assets/js/contrato/new.js')
     .addEntry('js/contrato/edit', './assets/js/contrato/edit.js')
     .addEntry('js/lancamento/new', './assets/js/lancamento/new.js')

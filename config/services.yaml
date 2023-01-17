@@ -26,3 +26,7 @@ services:
     App\Service\CursoService:
         autowire: true
         autoconfigure: true
+
+    App\Service\UserService:
+        autowire: true
+        autoconfigure: true

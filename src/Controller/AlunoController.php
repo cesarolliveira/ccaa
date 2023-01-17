@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Aluno;
 use App\Form\AlunoType;
+use App\Form\AlunoBrasilType;
 use App\Service\AlunoService;
+use App\Form\AlunoParaguaiType;
+use App\Form\TipoCadastroAlunoType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,26 +39,80 @@ class AlunoController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_aluno_new', methods: ['GET', 'POST'])]
+    #[Route('/tipo-new', name: 'app_aluno_tipo_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
-    public function new(Request $request): Response
+    public function tipoNew(Request $request): Response
+    {
+        if (!$this->alunoService->canListar($this->getUser())) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $form = $this->createForm(TipoCadastroAlunoType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $tipoCadastro = $request->request->get('tipo_cadastro_aluno')['tipoCadastro'];
+
+            if ($tipoCadastro === 'brasil') {
+                return $this->redirectToRoute('app_aluno_new_brasil', [], Response::HTTP_SEE_OTHER);
+            }
+
+            if ($tipoCadastro === 'paraguay') {
+                return $this->redirectToRoute('app_aluno_new_paraguai', [], Response::HTTP_SEE_OTHER);
+            }
+        }
+
+        return $this->renderForm('aluno/_tipo_new.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/new-brasil', name: 'app_aluno_new_brasil', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function newBrasil(Request $request): Response
     {
         if (!$this->alunoService->canListar($this->getUser())) {
             throw $this->createAccessDeniedException();
         }
 
         $aluno = new Aluno();
-        $form = $this->createForm(AlunoType::class, $aluno);
+        $form = $this->createForm(AlunoBrasilType::class, $aluno);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->alunoService->cadastrar($aluno);
+            $this->alunoService->cadastrar($aluno, 'brasil');
 
             return $this->redirectToRoute('app_aluno_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('aluno/new.html.twig', [
+        return $this->renderForm('aluno/new_brasil.html.twig', [
+            'aluno' => $aluno,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/new-paraguai', name: 'app_aluno_new_paraguai', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function newParaguai(Request $request): Response
+    {
+        if (!$this->alunoService->canListar($this->getUser())) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $aluno = new Aluno();
+        $form = $this->createForm(AlunoParaguaiType::class, $aluno);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->alunoService->cadastrar($aluno, 'paraguay');
+
+            return $this->redirectToRoute('app_aluno_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('aluno/new_paraguai.html.twig', [
             'aluno' => $aluno,
             'form' => $form,
         ]);
@@ -78,7 +135,14 @@ class AlunoController extends AbstractController
             throw $this->createAccessDeniedException();
         }
 
-        $form = $this->createForm(AlunoType::class, $aluno);
+        if ($aluno->getNacionalidade() === 'brasil') {
+            $form = $this->createForm(AlunoBrasilType::class, $aluno);
+        } else {
+            $form = $this->createForm(AlunoParaguaiType::class, $aluno);
+        }
+
+        // dd($request);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

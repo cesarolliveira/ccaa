@@ -29,6 +29,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $locate = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nomeCompleto = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -116,5 +122,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNomeCompleto(): ?string
+    {
+        return $this->nomeCompleto;
+    }
+
+    public function setNomeCompleto(string $nomeCompleto): self
+    {
+        $this->nomeCompleto = $nomeCompleto;
+
+        return $this;
+    }
+
+    public function getLocate(): ?string
+    {
+        return $this->locate;
+    }
+
+    public function setLocate(string $locate): self
+    {
+        $this->locate = $locate;
+
+        return $this;
     }
 }

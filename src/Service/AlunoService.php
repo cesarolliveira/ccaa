@@ -2,8 +2,8 @@
 
 namespace App\Service;
 
-use App\Entity\Aluno;
 use App\Entity\User;
+use App\Entity\Aluno;
 use App\Repository\AlunoRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,8 +57,10 @@ class AlunoService
         );
     }
 
-    public function cadastrar(Aluno $aluno): void
+    public function cadastrar(Aluno $aluno, $nacionalidade): void
     {
+        $aluno->setNacionalidade($nacionalidade);
+
         $this->alunoRepository->save($aluno, true);
     }
 

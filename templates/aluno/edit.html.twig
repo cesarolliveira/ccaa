@@ -1,19 +1,19 @@
 {% extends 'app.html.twig' %}
 
 {% block title %}
-    Editar Aluno
+    {{ 'title.edit.aluno'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block pageName %}
-    Editar Aluno
+    {{ 'title.edit.aluno'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block breadcrumbName %}
     <li class="breadcrumb-item">
-        Aluno
+        {{ 'title.aluno'|trans(locale = userLocate) }}
     </li>
     <li class="breadcrumb-item">
-        Editar Aluno
+        {{ 'title.edit.aluno'|trans(locale = userLocate) }}
     </li>
     <li class="breadcrumb-item active active">
         {{ aluno.nomeCompleto }}
@@ -22,6 +22,15 @@
 
 {% block content %}
 
-    {{ include('aluno/_form.html.twig', {'button_label': 'Salvar'}) }}
+    {% if form.vars.data.nacionalidade == 'brasil' %}
+        {{ include('aluno/_form_brasil.html.twig', {'button_label': 'Salvar'}) }}
+    {% else %}
+        {{ include('aluno/_form_paraguai.html.twig', {'button_label': 'Salvar'}) }}
+    {% endif %}
     
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/aluno/edit') }}
 {% endblock %}

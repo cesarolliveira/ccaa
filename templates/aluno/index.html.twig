@@ -1,23 +1,26 @@
 {% extends 'app.html.twig' %}
 
 {% block title %}
-    Alunos
+    {{ 'title.aluno'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block pageName %}
-    Alunos
+    {{ 'title.aluno'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block breadcrumbName %}
-    <li class="breadcrumb-item active">Alunos</li>
+    <li class="breadcrumb-item active">
+        {{ 'title.aluno'|trans(locale = userLocate) }}
+    </li>
 {% endblock %}
 
 {% block content %}
 
     <div class="row">
        <div class="col-12 d-flex justify-content-end">
-            <a href="{{ path('app_aluno_new') }}" class="btn btn-info btn-sm text-white mb-2 shadow">
-                <i class="fa-solid fa-plus"></i> Cadastrar
+            <a href="{{ path('app_aluno_tipo_new') }}" class="btn btn-info btn-sm text-white mb-2 shadow">
+                <i class="fa-solid fa-plus"></i>
+                {{ 'grid.options.novo'|trans(locale = userLocate) }}
             </a>
         </div>
     </div>
@@ -30,19 +33,19 @@
                         <thead>
                             <tr>
                                 <th class="align-middle">
-                                    Aluno
+                                    {{ 'grid.columns.aluno'|trans(locale = userLocate) }}
                                 </th>
                                 <th class="align-middle">
-                                    Responsável
+                                    {{ 'grid.columns.responsavel'|trans(locale = userLocate) }}
                                 </th>
                                 <th class="text-center align-middle">
-                                    Nacionalidade
+                                    {{ 'grid.columns.nacionalidade'|trans(locale = userLocate) }}
                                 </th>
                                 <th class="text-center align-middle">
-                                    Situação
+                                    {{ 'grid.columns.situacao'|trans(locale = userLocate) }}
                                 </th>
                                 <th class="text-center align-middle">
-                                    Opções
+                                    {{ 'grid.columns.opcoes'|trans(locale = userLocate) }}
                                 </th>
                             </tr>
                         </thead>
@@ -68,10 +71,12 @@
                                     <td class="text-center align-middle">
                                         <div class="btn-group btn-group-sm mt-1 mb-1 shadow-sm" role="group">
                                             <a class="btn btn-info text-white" href="{{ path('app_aluno_show', {'id': item.id}) }}">
-                                                <i class="fa-solid fa-eye"></i> Visualizar
+                                                <i class="fa-solid fa-eye"></i>
+                                                {{ 'grid.options.visualizar'|trans(locale = userLocate) }}
                                             </a>
                                             <a class="btn btn-info text-white" href="{{ path('app_aluno_edit', {'id': item.id}) }}">
-                                                <i class="fa-solid fa-pen-to-square"></i> Editar
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                {{ 'grid.options.editar'|trans(locale = userLocate) }}
                                             </a>
                                             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GERENTE') %}
                                                 {% include 'aluno/_delete_form.html.twig' with {'id': item.id} %}                  

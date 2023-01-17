@@ -25,3 +25,8 @@
     {{ include('user/_form.html.twig', {'button_label': 'Salvar'}) }}
     
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/user/edit') }}
+{% endblock %}

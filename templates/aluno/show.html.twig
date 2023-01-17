@@ -1,19 +1,19 @@
 {% extends 'app.html.twig' %}
 
 {% block title %}
-    Visualizar Aluno
+    {{ 'title.aluno'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block pageName %}
-    Visualizar Aluno
+    {{ 'title.aluno'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block breadcrumbName %}
     <li class="breadcrumb-item">
-        Aluno
+        {{ 'title.aluno'|trans(locale = userLocate) }}
     </li>
     <li class="breadcrumb-item">
-        Visualizar Aluno
+        {{ 'title.show.aluno'|trans(locale = userLocate) }}
     </li>
     <li class="breadcrumb-item active active">
         {{ aluno.nomeCompleto }}
@@ -24,7 +24,8 @@
     <div class="row">
         <div class="col-12 d-flex justify-content-end">
             <a href="{{ path('app_aluno_index') }}" class="btn btn-danger btn-sm text-white mb-2 shadow">
-                <i class="fa-solid fa-left-long"></i> Voltar
+                <i class="fa-solid fa-left-long"></i>
+                {{ 'grid.columns.voltar'|trans(locale = userLocate) }}
             </a>
         </div>
     </div>
@@ -36,7 +37,9 @@
 
                     <div class="row mb-2">
                         <div class="col-12">
-                           <h3>Dados do Aluno</h3>
+                            <h3>
+                                {{ 'entity.aluno.title'|trans(locale = userLocate) }}
+                            </h3>
                            <hr>
                         </div>
                     </div>

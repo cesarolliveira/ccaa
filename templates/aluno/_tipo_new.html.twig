@@ -1,0 +1,60 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    {{ 'title.cadastro.tipo.aluno'|trans(locale = userLocate) }}
+{% endblock %}
+
+{% block pageName %}
+    {{ 'title.cadastro.tipo.aluno'|trans(locale = userLocate) }}
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        {{ 'title.aluno'|trans(locale = userLocate) }}
+    </li>
+    <li class="breadcrumb-item active">
+        {{ 'title.cadastro.tipo.aluno'|trans(locale = userLocate) }}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('app_aluno_index') }}" class="btn btn-danger btn-sm text-white mb-2 shadow">
+                <i class="fa-solid fa-left-long"></i>
+                {{ 'grid.columns.voltar'|trans(locale = userLocate) }}
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 mb-5 shadow">
+                <div class="card-body">
+
+                    {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col-12">
+                                {{ form_row(form.tipoCadastro) }}
+                            </div>                 
+                        </div>    
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <button class="btn btn-info text-white shadow-sm">
+                                    {{ button_label|default('grid.options.continuar'|trans(locale = userLocate)) }}
+                                </button>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/aluno/tipo_new') }}
+{% endblock %}

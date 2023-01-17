@@ -3,11 +3,11 @@
 namespace App\Entity;
 
 use App\Enum\SituacaoEnum;
-use App\Repository\AlunoRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AlunoRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: AlunoRepository::class)]
 class Aluno
@@ -20,31 +20,31 @@ class Aluno
     #[ORM\Column(length: 255)]
     private ?string $nomeCompleto = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $documentoCpf = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $documentoRg = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dataNascimento = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $naturalidade = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nomePai = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $nomeMae = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $nomeResponsavel = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $responsavelCpf = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $responsavelRg = null;
 
     #[ORM\Column(length: 10)]
@@ -58,6 +58,9 @@ class Aluno
 
     #[ORM\OneToMany(mappedBy: 'aluno', targetEntity: Lancamento::class)]
     private Collection $lancamentos;
+
+    #[ORM\Column(length: 10)]
+    private ?string $nacionalidade = null;
 
     public function __construct()
     {
@@ -276,6 +279,18 @@ class Aluno
                 $lancamento->setAluno(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNacionalidade(): ?string
+    {
+        return $this->nacionalidade;
+    }
+
+    public function setNacionalidade(string $nacionalidade): self
+    {
+        $this->nacionalidade = $nacionalidade;
 
         return $this;
     }

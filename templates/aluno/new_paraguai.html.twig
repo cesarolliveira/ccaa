@@ -1,0 +1,29 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}
+    {{ 'title.cadastro.aluno'|trans(locale = userLocate) }}
+{% endblock %}
+
+{% block pageName %}
+    {{ 'title.cadastro.aluno'|trans(locale = userLocate) }}
+{% endblock %}
+
+{% block breadcrumbName %}
+    <li class="breadcrumb-item">
+        {{ 'title.aluno'|trans(locale = userLocate) }}
+    </li>
+    <li class="breadcrumb-item active">
+        {{ 'title.cadastro.aluno'|trans(locale = userLocate) }}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    {{ include('aluno/_form_paraguai.html.twig') }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/aluno/edit') }}
+{% endblock %}
