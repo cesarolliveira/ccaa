@@ -69,7 +69,7 @@ class AlunoParaguaiType extends AbstractType
             ])
             ->add('documentoRg', TextType::class, [
                 'label' => $this->translator->trans(
-                    'entity.aluno.rg.py',
+                    'entity.aluno.rg',
                     [],
                     null,
                     'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'

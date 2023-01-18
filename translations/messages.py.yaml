@@ -23,8 +23,7 @@ entity.aluno.title: Información del Alunno
 entity.aluno.nome_completo: Nombre
 entity.aluno.data_nascimento: Fecha de nacimiento
 entity.aluno.cpf: CPF
-entity.aluno.rg.py: C.I
-entity.aluno.rg.br: RG
+entity.aluno.rg: C.I
 entity.aluno.nacionalidade: Nacionalidad
 entity.aluno.naturalidade: Naturalidad
 entity.aluno.nome_pai: Nombre del padre
