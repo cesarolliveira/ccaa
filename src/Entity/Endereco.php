@@ -38,7 +38,7 @@ class Endereco
         return $this->logradouro;
     }
 
-    public function setLogradouro(string $logradouro): self
+    public function setLogradouro(?string $logradouro): self
     {
         $this->logradouro = $logradouro;
 
@@ -50,7 +50,7 @@ class Endereco
         return $this->numero;
     }
 
-    public function setNumero(string $numero): self
+    public function setNumero(?string $numero): self
     {
         $this->numero = $numero;
 
@@ -62,7 +62,7 @@ class Endereco
         return $this->pais;
     }
 
-    public function setPais(string $pais): self
+    public function setPais(?string $pais): self
     {
         $this->pais = $pais;
 
@@ -74,7 +74,7 @@ class Endereco
         return $this->cidade;
     }
 
-    public function setCidade(string $cidade): self
+    public function setCidade(?string $cidade): self
     {
         $this->cidade = $cidade;
 
@@ -86,7 +86,7 @@ class Endereco
         return $this->bairro;
     }
 
-    public function setBairro(string $bairro): self
+    public function setBairro(?string $bairro): self
     {
         $this->bairro = $bairro;
 

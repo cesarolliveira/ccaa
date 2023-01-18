@@ -84,7 +84,7 @@ class Aluno
         return $this->nomeCompleto;
     }
 
-    public function setNomeCompleto(string $nomeCompleto): self
+    public function setNomeCompleto(?string $nomeCompleto): self
     {
         $this->nomeCompleto = $nomeCompleto;
 
@@ -96,7 +96,7 @@ class Aluno
         return $this->documentoCpf;
     }
 
-    public function setDocumentoCpf(string $documentoCpf): self
+    public function setDocumentoCpf(?string $documentoCpf): self
     {
         $this->documentoCpf = str_pad($documentoCpf, 11, '0', STR_PAD_LEFT);
 
@@ -108,7 +108,7 @@ class Aluno
         return $this->documentoRg;
     }
 
-    public function setDocumentoRg(string $documentoRg): self
+    public function setDocumentoRg(?string $documentoRg): self
     {
         $this->documentoRg = $documentoRg;
 
@@ -132,7 +132,7 @@ class Aluno
         return $this->naturalidade;
     }
 
-    public function setNaturalidade(string $naturalidade): self
+    public function setNaturalidade(?string $naturalidade): self
     {
         $this->naturalidade = $naturalidade;
 
@@ -156,7 +156,7 @@ class Aluno
         return $this->nomeMae;
     }
 
-    public function setNomeMae(string $nomeMae): self
+    public function setNomeMae(?string $nomeMae): self
     {
         $this->nomeMae = $nomeMae;
 
@@ -168,7 +168,7 @@ class Aluno
         return $this->nomeResponsavel;
     }
 
-    public function setNomeResponsavel(string $nomeResponsavel): self
+    public function setNomeResponsavel(?string $nomeResponsavel): self
     {
         $this->nomeResponsavel = $nomeResponsavel;
 
@@ -180,7 +180,7 @@ class Aluno
         return $this->responsavelCpf;
     }
 
-    public function setResponsavelCpf(int $responsavelCpf): self
+    public function setResponsavelCpf(?int $responsavelCpf): self
     {
         $this->responsavelCpf = $responsavelCpf;
 
@@ -192,7 +192,7 @@ class Aluno
         return $this->responsavelRg;
     }
 
-    public function setResponsavelRg(string $responsavelRg): self
+    public function setResponsavelRg(?string $responsavelRg): self
     {
         $this->responsavelRg = $responsavelRg;
 
@@ -204,7 +204,7 @@ class Aluno
         return $this->situacao;
     }
 
-    public function setSituacao(string $situacao): self
+    public function setSituacao(?string $situacao): self
     {
         $this->situacao = $situacao;
 

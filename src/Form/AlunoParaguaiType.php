@@ -97,6 +97,16 @@ class AlunoParaguaiType extends AbstractType
                 'attr' => [
                     'class' => 'js-choice',
                 ],
+                'constraints' => [
+                    new notBlank([
+                        'message' => $this->translator->trans(
+                            'message.error.aluno.naturalidade',
+                            [],
+                            null,
+                            'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
+                        )
+                    ]),
+                ],
                 'data' => NaturalidadeEnum::PARAGUAY,
             ])
             ->add('nomePai', TextType::class, [
@@ -162,7 +172,6 @@ class AlunoParaguaiType extends AbstractType
                 'months' => range(1, 12),
                 'years' => range(date('Y') - 123, date('Y')),
                 'data' => $aluno->getDataNascimento(),
-
             ]);
         }
 
@@ -176,9 +185,18 @@ class AlunoParaguaiType extends AbstractType
                 ),
                 'choices' => SituacaoEnum::getChoices(),
                 'placeholder' => 'Selecione uma opção',
-
                 'attr' => [
                     'class' => 'js-choice',
+                ],
+                'constraints' => [
+                    new notBlank([
+                        'message' => $this->translator->trans(
+                            'message.error.situacao',
+                            [],
+                            null,
+                            'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
+                        )
+                    ]),
                 ],
             ]);
         }

@@ -54,3 +54,4 @@ message.error.endereco.numero: Por favor, insira el número
 message.error.endereco.bairro: Por favor, insira el barrio
 message.error.endereco.cidade: Por favor, insira la ciudad
 message.error.endereco.pais: Por favor, insira el país
+message.error.situacao: Por favor, selecione a situação

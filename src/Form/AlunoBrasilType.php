@@ -254,6 +254,16 @@ class AlunoBrasilType extends AbstractType
                 'attr' => [
                     'class' => 'js-choice',
                 ],
+                'constraints' => [
+                    new notBlank([
+                        'message' => $this->translator->trans(
+                            'message.error.situacao',
+                            [],
+                            null,
+                            'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
+                        )
+                    ]),
+                ],
             ]);
         }
     }
