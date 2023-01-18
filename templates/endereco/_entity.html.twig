@@ -3,13 +3,13 @@
         <label class="form-label">
             {{ 'entity.endereco.logradouro'|trans(locale = userLocate) }}
         </label>
-        <input type="text" class="form-control" value="{{ entity.endereco.logradouro }}" disabled/>
+        <input type="text" class="form-control" value="{{ null != entity.endereco.logradouro ? entity.endereco.logradouro : 'message.valor_nao_informado'|trans(locale = userLocate) }}" disabled/>
     </div>
     <div class="col-4">
         <label class="form-label">
             {{ 'entity.endereco.numero'|trans(locale = userLocate) }}
         </label>
-        <input type="text" class="form-control" value="{{ entity.endereco.numero }}" disabled/>
+        <input type="text" class="form-control" value="{{ entity.endereco.numero ? entity.endereco.numero : 'message.valor_nao_informado'|trans(locale = userLocate) }}" disabled/>
     </div>
 </div>
 <div class="row mb-2">

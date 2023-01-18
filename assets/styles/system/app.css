@@ -11710,3 +11710,13 @@ body {
 .col-form-label.required {
   padding-top: 0px !important;
 }
+
+input[value="Valor no informado"] {
+  color: red;
+  font-weight: 400;
+}
+
+input[value="Valor não informado"] {
+  color: red;
+  font-weight: 400;
+}

@@ -13,6 +13,7 @@ title.aluno: Aluno
 title.show.aluno: Visualizar Aluno
 title.edit.aluno: Editar Aluno
 title.cadastro.aluno: Cadastro de Aluno
+subtitle.cadastro.aluno: Nacionalidade do aluno
 grid.columns.aluno: Aluno
 grid.columns.responsavel: Responsável
 grid.columns.nacionalidade: Nacionalidade
@@ -31,6 +32,23 @@ entity.aluno.cpf_responsavel: CPF do responsável
 entity.aluno.rg_responsavel: RG do responsável
 entity.aluno.situacao: Situação
 
+#MESSAGE
+message.valor_nao_informado: Valor não informado
+message.select_option: Selecione uma opção
+
+# MESSAGE ERROR ALUNO
+message.error.subtitle.cadastro.aluno: Por favor, selecione a nacionalidade do aluno
+message.error.aluno.nome_completo: Por favor, insira o nome completo do aluno
+message.error.aluno.cpf: Por favor, insira o CPF do aluno
+message.error.aluno.rg.br: Por favor, insira o RG do aluno
+message.error.aluno.rg.py: Por favor, insira o C.I do aluno
+message.error.aluno.naturalidade: Por favor, insira a naturalidade do aluno
+message.error.aluno.nome_mae: Por favor, insira o nome da mãe do aluno
+message.error.aluno.nome_responsavel: Por favor, insira o nome do responsável do aluno
+message.error.aluno.cpf_responsavel: Por favor, insira o CPF do responsável do aluno
+message.error.aluno.rg_responsavel.br: Por favor, insira o RG do responsável do aluno
+message.error.aluno.rg_responsavel.py: Por favor, insira o C.I do responsável do aluno
+
 # PAGE ENDERECO
 entity.endereco: Endereço
 entity.endereco.logradouro: Logradouro
@@ -39,19 +57,10 @@ entity.endereco.bairro: Bairro
 entity.endereco.cidade: Cidade
 entity.endereco.pais: País
 
-# MESSAGE ERROR
-message.error.aluno.nome_completo.not.blank: Por favor, insira o nome completo do aluno
-message.error.aluno.nome_completo.not.null: Por favor, insira o nome completo do aluno
-message.error.aluno.cpf: Por favor, insira o CPF del alumno
-message.error.aluno.naturalidade: Por favor, insira la naturalidad del alumno
-message.error.aluno.nome_pai: Por favor, insira el nombre del padre del alumno
-message.error.aluno.nome_mae: Por favor, insira el nombre de la madre del alumno
-message.error.aluno.nome_responsavel: Por favor, insira el nombre del responsable del alumno
-message.error.aluno.cpf_responsavel: Por favor, insira el CPF del responsable del alumno
-message.error.aluno.rg_responsavel: Por favor, insira el RG del responsable del alumno
-message.error.endereco.logradouro: Por favor, insira la calle
-message.error.endereco.numero: Por favor, insira el número
-message.error.endereco.bairro: Por favor, insira el barrio
-message.error.endereco.cidade: Por favor, insira la ciudad
-message.error.endereco.pais: Por favor, insira el país
+# MESSAGE ERROR ENDERECO
+message.error.endereco.logradouro: Por favor, insira o logradouro
+message.error.endereco.numero: Por favor, insira o número
+message.error.endereco.bairro: Por favor, insira o bairro
+message.error.endereco.cidade: Por favor, insira o cidade
+message.error.endereco.pais: Por favor, insira o país
 message.error.situacao: Por favor, selecione a situação

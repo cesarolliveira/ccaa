@@ -17,11 +17,11 @@
         <label class="form-label">
             {{ 'entity.aluno.cpf'|trans(locale = userLocate) }}
         </label>
-        <input type="text" class="form-control" value="{{ aluno.documentoCpf }}" disabled/>
+        <input type="text" class="form-control" value="{{ null != aluno.documentoCpf ? aluno.documentoCpf : 'message.valor_nao_informado'|trans(locale = userLocate) }}" disabled/>
     </div>
     <div class="col-6">
         <label class="form-label">
-            {{ 'entity.aluno.rg'|trans(locale = userLocate) }}
+            {{ 'entity.aluno.rg.py_br'|trans(locale = userLocate) }}
         </label>
         <input type="text" class="form-control" value="{{ aluno.documentoRg }}" disabled/>
     </div>
@@ -31,7 +31,7 @@
         <label class="form-label">
             {{ 'entity.aluno.nacionalidade'|trans(locale = userLocate) }}
         </label>
-        <input type="text" class="form-control" value="{{ aluno.naturalidade }}" disabled/>
+        <input type="text" class="form-control" value="{{ aluno.nacionalidade }}" disabled/>
     </div>
     <div class="col-6">
         <label class="form-label">
@@ -45,13 +45,13 @@
         <label class="form-label">
             {{ 'entity.aluno.nome_pai'|trans(locale = userLocate) }}
         </label>
-        <input type="text" class="form-control" value="{{ aluno.nomePai }}" disabled/>
+        <input type="text" class="form-control" value="{{ null != aluno.nomePai ? aluno.nomePai : 'message.valor_nao_informado'|trans(locale = userLocate) }}" disabled/>
     </div>
     <div class="col-6">
         <label class="form-label">
             {{ 'entity.aluno.nome_mae'|trans(locale = userLocate) }}
         </label>
-        <input type="text" class="form-control" value="{{ aluno.nomeMae }}" disabled/>
+        <input type="text" class="form-control" value="{{ null != aluno.nomeMae ? aluno.nomeMae : 'message.valor_nao_informado'|trans(locale = userLocate) }}" disabled/>
     </div>
 </div>
 <div class="row mb-2">
@@ -59,19 +59,19 @@
         <label class="form-label">
             {{ 'entity.aluno.nome_responsavel'|trans(locale = userLocate) }}
         </label>
-        <input type="text" class="form-control" value="{{ aluno.nomeResponsavel }}" disabled/>
+        <input type="text" class="form-control" value="{{ null != aluno.nomeResponsavel ? aluno.nomeResponsavel : 'message.valor_nao_informado'|trans(locale = userLocate) }}" disabled/>
     </div>
     <div class="col-3">
         <label class="form-label">
             {{ 'entity.aluno.cpf_responsavel'|trans(locale = userLocate) }}
         </label>
-        <input type="text" class="form-control" value="{{ aluno.responsavelCpf }}" disabled/>
+        <input type="text" class="form-control" value="{{ null != aluno.responsavelCpf ? aluno.responsavelCpf : 'message.valor_nao_informado'|trans(locale = userLocate) }}" disabled/>
     </div>
     <div class="col-3">
         <label class="form-label">
-            {{ 'entity.aluno.rg_responsavel'|trans(locale = userLocate) }}
+            {{ 'entity.aluno.rg_responsavel.py_br'|trans(locale = userLocate) }}
         </label>
-        <input type="text" class="form-control" value="{{ aluno.responsavelRg }}" disabled/>
+        <input type="text" class="form-control" value="{{ null != aluno.responsavelRg ? aluno.responsavelRg : 'message.valor_nao_informado'|trans(locale = userLocate) }}" disabled/>
     </div>
 </div>
 <div class="row mb-2">

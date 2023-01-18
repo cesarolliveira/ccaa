@@ -57,7 +57,12 @@ class EnderecoType extends AbstractType
                     'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
                 ),
                 'choices' => CidadeEnum::getChoices(),
-                'placeholder' => 'Selecione uma cidade',
+                'placeholder' => $this->translator->trans(
+                    'message.select_option',
+                    [],
+                    null,
+                    'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
+                ),
                 'attr' => [
                     'class' => 'js-choice',
                 ],
@@ -79,7 +84,12 @@ class EnderecoType extends AbstractType
                     null,
                     'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
                 ),
-                'placeholder' => 'Selecione um país',
+                'placeholder' => $this->translator->trans(
+                    'message.select_option',
+                    [],
+                    null,
+                    'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
+                ),
                 'choices' => NaturalidadeEnum::getChoices(),
                 'attr' => [
                     'class' => 'js-choice',

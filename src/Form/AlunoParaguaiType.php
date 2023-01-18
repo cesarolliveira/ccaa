@@ -93,7 +93,12 @@ class AlunoParaguaiType extends AbstractType
                     'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
                 ),
                 'choices' => NaturalidadeEnum::getChoices(),
-                'placeholder' => 'Selecione uma opção',
+                'placeholder' => $this->translator->trans(
+                    'message.select_option',
+                    [],
+                    null,
+                    'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
+                ),
                 'attr' => [
                     'class' => 'js-choice',
                 ],
@@ -184,7 +189,12 @@ class AlunoParaguaiType extends AbstractType
                     'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
                 ),
                 'choices' => SituacaoEnum::getChoices(),
-                'placeholder' => 'Selecione uma opção',
+                'placeholder' => $this->translator->trans(
+                    'message.select_option',
+                    [],
+                    null,
+                    'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
+                ),
                 'attr' => [
                     'class' => 'js-choice',
                 ],

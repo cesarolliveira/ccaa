@@ -25,6 +25,7 @@ entity.aluno.data_nascimento: Fecha de nacimiento
 entity.aluno.cpf: CPF
 entity.aluno.rg.br: RG
 entity.aluno.rg.py: C.I
+entity.aluno.rg.py_br: RG / C.I
 entity.aluno.nacionalidade: Nacionalidad
 entity.aluno.naturalidade: Naturalidad
 entity.aluno.nome_pai: Nombre del padre
@@ -33,7 +34,25 @@ entity.aluno.nome_responsavel: Nombre del responsable
 entity.aluno.cpf_responsavel: CPF del responsable
 entity.aluno.rg_responsavel.py: C.I del responsable
 entity.aluno.rg_responsavel.br: RG del responsable
+entity.aluno.rg_responsavel.py_br: RG / C.I del responsable
 entity.aluno.situacao: Situación
+
+#MESSAGE
+message.valor_nao_informado: Valor no informado
+message.select_option: Seleccione una opción
+
+# MESSAGE ERROR ALUNO
+message.error.subtitle.cadastro.aluno: Por favor, seleccione el tipo de registro
+message.error.aluno.nome_completo: Por favor, insira el nombre completo del alumno
+message.error.aluno.cpf: Por favor, insira o CPF del alumno
+message.error.aluno.rg.br: Por favor, insira o RG del alumno
+message.error.aluno.rg.py: Por favor, insira o C.I del alumno
+message.error.aluno.naturalidade: Por favor, insira la naturalidad del alumno
+message.error.aluno.nome_mae: Por favor, insira el nombre de la madre del alumno
+message.error.aluno.nome_responsavel: Por favor, insira el nombre del responsable del alumno
+message.error.aluno.cpf_responsavel: Por favor, insira el CPF del responsable del alumno
+message.error.aluno.rg_responsavel.br: Por favor, insira el RG del responsable del alumno
+message.error.aluno.rg_responsavel.py: Por favor, insira el C.I del responsable del alumno
 
 # PAGE ENDERECO
 entity.endereco: Dirección
@@ -43,19 +62,7 @@ entity.endereco.bairro: Barrio
 entity.endereco.cidade: Ciudad
 entity.endereco.pais: País
 
-# MESSAGE ERROR
-message.error.subtitle.cadastro.aluno: Por favor, seleccione el tipo de registro
-message.error.aluno.nome_completo: Por favor, insira el nombre completo del alumno
-message.error.aluno.cpf: Por favor, insira o CPF del alumno
-message.error.aluno.rg.br: Por favor, insira o RG del alumno
-message.error.aluno.rg.py: Por favor, insira o C.I del alumno
-message.error.aluno.naturalidade: Por favor, insira la naturalidad del alumno
-message.error.aluno.nome_pai: Por favor, insira el nombre del padre del alumno
-message.error.aluno.nome_mae: Por favor, insira el nombre de la madre del alumno
-message.error.aluno.nome_responsavel: Por favor, insira el nombre del responsable del alumno
-message.error.aluno.cpf_responsavel: Por favor, insira el CPF del responsable del alumno
-message.error.aluno.rg_responsavel.br: Por favor, insira el RG del responsable del alumno
-message.error.aluno.rg_responsavel.py: Por favor, insira el C.I del responsable del alumno
+# MESSAGE ERROR ENDERECO
 message.error.endereco.logradouro: Por favor, insira la calle
 message.error.endereco.numero: Por favor, insira el número
 message.error.endereco.bairro: Por favor, insira el barrio
