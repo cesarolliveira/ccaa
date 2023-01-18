@@ -4,7 +4,7 @@ grid.options.editar: Editar
 grid.options.excluir: Eliminar
 grid.options.novo: Nuevo
 grid.options.continuar: Continuar
-grid.columns.situacao: situación
+grid.columns.situacao: Situación
 grid.columns.opcoes: Opciones
 grid.columns.voltar: Volver
 
@@ -23,7 +23,8 @@ entity.aluno.title: Información del Alunno
 entity.aluno.nome_completo: Nombre
 entity.aluno.data_nascimento: Fecha de nacimiento
 entity.aluno.cpf: CPF
-entity.aluno.rg: C.I
+entity.aluno.rg.br: RG
+entity.aluno.rg.py: C.I
 entity.aluno.nacionalidade: Nacionalidad
 entity.aluno.naturalidade: Naturalidad
 entity.aluno.nome_pai: Nombre del padre
@@ -44,10 +45,10 @@ entity.endereco.pais: País
 
 # MESSAGE ERROR
 message.error.subtitle.cadastro.aluno: Por favor, seleccione el tipo de registro
-message.error.aluno.nome_completo.not.blank: Por favor, insira el nombre completo del alumno
-message.error.aluno.nome_completo.not.null: Por favor, insira el nombre completo del alumno
+message.error.aluno.nome_completo: Por favor, insira el nombre completo del alumno
 message.error.aluno.cpf: Por favor, insira o CPF del alumno
-message.error.aluno.rg: Por favor, insira o C.I del alumno
+message.error.aluno.rg.br: Por favor, insira o RG del alumno
+message.error.aluno.rg.py: Por favor, insira o C.I del alumno
 message.error.aluno.naturalidade: Por favor, insira la naturalidad del alumno
 message.error.aluno.nome_pai: Por favor, insira el nombre del padre del alumno
 message.error.aluno.nome_mae: Por favor, insira el nombre de la madre del alumno

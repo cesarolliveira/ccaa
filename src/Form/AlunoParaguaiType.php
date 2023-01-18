@@ -45,7 +45,7 @@ class AlunoParaguaiType extends AbstractType
                 'constraints' => [
                     new NotNull([
                         'message' => $this->translator->trans(
-                            'message.error.aluno.nome_completo.not.null',
+                            'message.error.aluno.nome_completo',
                             [],
                             null,
                             'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
@@ -69,7 +69,7 @@ class AlunoParaguaiType extends AbstractType
             ])
             ->add('documentoRg', TextType::class, [
                 'label' => $this->translator->trans(
-                    'entity.aluno.rg',
+                    'entity.aluno.rg.py',
                     [],
                     null,
                     'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
@@ -77,7 +77,7 @@ class AlunoParaguaiType extends AbstractType
                 'constraints' => [
                     new notBlank([
                         'message' => $this->translator->trans(
-                            'message.error.aluno.rg',
+                            'message.error.aluno.rg.py',
                             [],
                             null,
                             'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
@@ -135,7 +135,7 @@ class AlunoParaguaiType extends AbstractType
             ])
             ->add('responsavelRg', TextType::class, [
                 'label' => $this->translator->trans(
-                    'entity.aluno.rg_responsavel',
+                    'entity.aluno.rg_responsavel.py',
                     [],
                     null,
                     'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'

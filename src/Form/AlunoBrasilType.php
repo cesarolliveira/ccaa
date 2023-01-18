@@ -87,7 +87,7 @@ class AlunoBrasilType extends AbstractType
             ])
             ->add('documentoRg', TextType::class, [
                 'label' => $this->translator->trans(
-                    'entity.aluno.rg',
+                    'entity.aluno.rg.br',
                     [],
                     null,
                     'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
@@ -95,7 +95,7 @@ class AlunoBrasilType extends AbstractType
                 'constraints' => [
                     new notBlank([
                         'message' => $this->translator->trans(
-                            'message.error.aluno.rg',
+                            'message.error.aluno.rg.br',
                             [],
                             null,
                             'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
@@ -199,7 +199,7 @@ class AlunoBrasilType extends AbstractType
                 'constraints' => [
                     new notBlank([
                         'message' => $this->translator->trans(
-                            'message.error.aluno.rg_responsavel',
+                            'message.error.aluno.rg_responsavel.br',
                             [],
                             null,
                             'pt_BR' === $this->userService->getUserLocate() ? 'pt_BR' : 'py'
