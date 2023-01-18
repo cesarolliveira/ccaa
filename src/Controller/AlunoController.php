@@ -141,8 +141,6 @@ class AlunoController extends AbstractController
             $form = $this->createForm(AlunoParaguaiType::class, $aluno);
         }
 
-        // dd($request);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
