@@ -37,8 +37,11 @@
                                 <th class="align-middle">
                                     E-mail
                                 </th>
-                                <th class="align-middle">
+                                <th class="text-center align-middle">
                                     Permissões
+                                </th>
+                                <th class="text-center align-middle">
+                                    Tradução
                                 </th>
                                 <th class="text-center align-middle">
                                     Opções
@@ -51,12 +54,15 @@
                                 <td class="align-middle">
                                     {{ item.email }}
                                 </td>
-                                <td class="align-middle">
+                                <td class="text-center align-middle">
                                     {% for item in item.roles %}
                                         {% if item != 'ROLE_USER' %}
                                             <span class="badge bg-secondary">{{ item|replace({'ROLE_': ''}) }}</span>
                                         {% endif %}
                                     {% endfor %}
+                                </td>
+                                <td class="text-center align-middle">
+                                    <span class="badge bg-secondary">{{ item.locate == 'pt_BR' ? 'BR' : 'PY' }}</span>
                                 </td>
                                 <td class="text-center align-middle">
                                     <div class="btn-group btn-group-sm mt-1 mb-1 shadow-sm" role="group">

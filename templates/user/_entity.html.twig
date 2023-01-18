@@ -7,7 +7,7 @@
     </div>
 </div>
 <div class="row mb-2">
-    <div class="col-12">
+    <div class="col-6">
         <label class="form-label">
             Permissões
         </label>
@@ -19,6 +19,15 @@
                     <span class="badge bg-secondary">{{ item|replace({'ROLE_': ''}) }}</span>
             {% endif %}
         {% endfor %}
+    </div>
+     <div class="col-6">
+        <label class="form-label">
+            Tradução
+        </label>
+
+        <br />
+
+        <span class="badge bg-secondary">{{ user.locate == 'pt_BR' ? 'BR' : 'PY' }}</span>
 
     </div>
 </div>
