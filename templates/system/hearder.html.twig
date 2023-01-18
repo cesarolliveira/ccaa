@@ -4,7 +4,7 @@
     <a class="navbar-brand ps-3 text-center" href="{{ path('app_dashboard') }}">
         <img src="{{ asset('build/default/ccaa-icon.png') }}" class="logo-image-header" alt="Logo CCAA">
         <small class="cidade">
-            Guaíra
+            {{ 'filial'|trans(locale = userLocate) }}
         </small>
     </a>
 

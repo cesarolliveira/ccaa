@@ -9,7 +9,7 @@
           <div class="sb-nav-link-icon">
             <i class="fas fa-tachometer-alt"></i>
           </div>
-          Dashboard
+          {{ 'dashboard'|trans(locale = userLocate) }}
         </a>
         
         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GERENTE') %}
@@ -18,7 +18,7 @@
             <div class="sb-nav-link-icon">
               <i class="fa-solid fa-users"></i>
             </div>
-            Usuários
+            {{ 'usuario'|trans(locale = userLocate) }}
           </a>
         
         {% endif %}
@@ -29,14 +29,14 @@
           <div class="sb-nav-link-icon">
             <i class="fa-solid fa-address-card"></i>
           </div>
-          Alunos
+          {{ 'aluno'|trans(locale = userLocate) }}
         </a>
 
         <a class="nav-link" href="{{ path('app_curso_index') }}">
           <div class="sb-nav-link-icon">
             <i class="fa-solid fa-chalkboard-user"></i>
           </div>
-          Cursos
+          {{ 'curso'|trans(locale = userLocate) }}
         </a>
 
         <div class="sb-sidenav-menu-heading">Gestão Financeira</div>
@@ -45,14 +45,14 @@
           <div class="sb-nav-link-icon">
             <i class="fa-solid fa-file-contract"></i>
           </div>
-          Contrato
+          {{ 'contrato'|trans(locale = userLocate) }}
         </a>
 
         <a class="nav-link" href="{{ path('app_lancamento_index') }}">
           <div class="sb-nav-link-icon">
             <i class="fa-solid fa-circle-plus"></i>
           </div>
-          Lançamentos
+          {{ 'lancamento'|trans(locale = userLocate) }}
         </a>
 
         {# <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">

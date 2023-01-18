@@ -1,3 +1,12 @@
+# MENU BUNDLES
+filial: Salto Del Guairá
+dashboard: Dashboard
+aluno: Alunno
+usuario: Usuario
+curso: Curso
+contrato: Contrato
+lancamento: Lancamento
+
 # DEFULTS
 grid.options.visualizar: Para ver
 grid.options.editar: Editar

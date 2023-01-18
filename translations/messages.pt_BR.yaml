@@ -1,3 +1,12 @@
+# MENU BUNDLES
+filial: Guaíra
+dashboard: Dashboard
+aluno: Alunos
+usuario: Usuários
+curso: Cursos
+contrato: Contratos
+lancamento: Lançamentos
+
 # DEFULTS
 grid.options.visualizar: Visualizar
 grid.options.editar: Editar
