@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\User;
 use App\Entity\Contrato;
 use App\Entity\Lancamento;
+use App\Enum\NacionalidadeEnum;
 use App\Enum\TipoLancamentoEnum;
 use App\Enum\SituacaoLancamentoEnum;
 use App\Repository\ContratoRepository;
@@ -70,12 +71,19 @@ class ContratoService
         $data = new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
         $data = $data->setDate($data->format('Y'), $data->format('m'), $contrato->getVencimento());
 
-        $valorLancamento = number_format(
-            ($contrato->getValor() - $contrato->getDesconto()) / $contrato->getParcelas(),
-            2,
-            '.',
-            ''
-        );
+        if (NacionalidadeEnum::BRAZIL === $contrato->getAluno()->getNacionalidade()) {
+            $contrato->setMoeda('BRL');
+            $desconto = number_format($contrato->getDesconto(), 2, '.', '');
+            $valor = number_format($contrato->getValor(), 2, '.', '');
+
+            $valorLancamento = number_format(($valor - $desconto) / $contrato->getParcelas(), 2, '.', '');
+        } else {
+            $contrato->setMoeda('PYG');
+            $desconto = number_format($contrato->getDesconto(), 3, '.', '');
+            $valor = number_format($contrato->getValor(), 3, '.', '');
+
+            $valorLancamento = number_format(($valor - $desconto) / $contrato->getParcelas(), 3, '.', '');
+        }
 
         for ($i = 1; $i <= $contrato->getParcelas(); $i++) {
             $lancamento = new Lancamento();
@@ -97,6 +105,7 @@ class ContratoService
             $lancamento->setParcela($i);
             $lancamento->setVencimento($data->add(new \DateInterval('P1M')));
             $lancamento->setValor($valorLancamento);
+            $lancamento->setMoeda(NacionalidadeEnum::BRAZIL === $contrato->getAluno()->getNacionalidade() ? 'BRL' : 'PYG');
             $lancamento->setObservacao($contrato->getDescricao());
             $lancamento->setSituacao(SituacaoLancamentoEnum::PENDENTE);
             $lancamento->setAluno($contrato->getAluno());

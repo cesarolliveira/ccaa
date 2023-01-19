@@ -37,9 +37,12 @@
         <label class="form-label">
             Valor
         </label>
-        <input type="text" class="form-control" value="{{ lancamento.valor|number_format(2, ',', '.') }}" disabled/>
+        {% if lancamento.contrato.aluno.nacionalidade == 'brasil' %}
+            <input type="text" class="form-control" value="{{ 'R$ ' ~ lancamento.valor|number_format(2, ',', '.') }}" disabled/>
+        {% else %}
+            <input type="text" class="form-control" value="{{ '₲ ' ~ lancamento.valor|number_format(3, ',', '.') }}" disabled/>
+        {% endif %}
     </div>
-    
 </div>
 <div class="row mb-2">
     <div class="col-12">

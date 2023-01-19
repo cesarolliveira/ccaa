@@ -34,7 +34,10 @@ class Lancamento
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $vencimento = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[ORM\Column(length: 10)]
+    private ?string $moeda = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 15, scale: 3)]
     private ?string $valor = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -172,6 +175,18 @@ class Lancamento
     public function setAluno(?Aluno $aluno): self
     {
         $this->aluno = $aluno;
+
+        return $this;
+    }
+
+    public function getMoeda(): ?string
+    {
+        return $this->moeda;
+    }
+
+    public function setMoeda(?string $moeda): self
+    {
+        $this->moeda = $moeda;
 
         return $this;
     }

@@ -38,7 +38,13 @@ class ContratoType extends AbstractType
                 'label' => 'Aluno',
                 'class' => Aluno::class,
                 'choice_label' => function ($aluno) {
-                    return $aluno->getNomeCompleto() . ' - ' . $aluno->getDocumentoCpf();
+                    return
+                        $aluno->getNomeCompleto() .
+                        ' - ' .
+                        (null !== $aluno->getDocumentoCpf() ? $aluno->getDocumentoCpf() : $aluno->getDocumentoRg()) .
+                        ' | ' .
+                        $aluno->getNacionalidade()
+                    ;
                 },
                 'placeholder' => 'Selecione um aluno',
                 'attr' => [

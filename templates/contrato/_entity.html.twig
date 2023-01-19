@@ -52,13 +52,21 @@
         <label class="form-label">
             Valor
         </label>
-        <input type="text" class="form-control" value="{{ contrato.valor|number_format(2, ',', '.') }}" disabled/>
+        {% if contrato.aluno.nacionalidade == 'brasil' %}
+            <input type="text" class="form-control" value="{{ 'R$ ' ~ contrato.valor|number_format(2, ',', '.') }}" disabled/>
+        {% else %}
+            <input type="text" class="form-control" value="{{ '₲ ' ~ contrato.valor|number_format(3, ',', '.') }}" disabled/>
+        {% endif %}
     </div>
     <div class="col-2">
         <label class="form-label">
             Desconto
         </label>
-        <input type="text" class="form-control" value="{{ contrato.desconto|number_format(2, ',', '.') }}" disabled/>
+        {% if contrato.aluno.nacionalidade == 'brasil' %}
+            <input type="text" class="form-control" value="{{ 'R$ ' ~ contrato.desconto|number_format(2, ',', '.') }}" disabled/>
+        {% else %}
+            <input type="text" class="form-control" value="{{ '₲ ' ~ contrato.desconto|number_format(3, ',', '.') }}" disabled/>
+        {% endif %}
     </div>
     <div class="col-2">
         <label class="form-label">

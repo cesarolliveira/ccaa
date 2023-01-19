@@ -28,13 +28,16 @@ class Contrato
     #[ORM\Column]
     private ?int $parcelas = null;
 
+    #[ORM\Column(length: 10)]
+    private ?string $moeda = null;
+
     #[ORM\Column(length: 255)]
     private ?string $formaPagamento = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 15, scale: 3)]
     private ?string $desconto = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 15, scale: 3)]
     private ?string $valor = null;
 
     #[ORM\Column(length: 10)]
@@ -191,9 +194,21 @@ class Contrato
         return $this->descricao;
     }
 
-    public function setDescricao(string $descricao): self
+    public function setDescricao(?string $descricao): self
     {
         $this->descricao = $descricao;
+
+        return $this;
+    }
+
+    public function getMoeda(): ?string
+    {
+        return $this->moeda;
+    }
+
+    public function setMoeda(?string $moeda): self
+    {
+        $this->moeda = $moeda;
 
         return $this;
     }
