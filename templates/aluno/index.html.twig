@@ -87,7 +87,7 @@
                             {% else %}
                                 <tr>
                                     <td class="text-center" colspan="5">
-                                        Nenhum registro encontrado!
+                                        {{ 'grid.options.null_registros'|trans(locale = userLocate) }}
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -101,7 +101,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="count">
-                        {{ 'Total de registros: ' ~ pagination.getTotalItemCount }}
+                        {{ 'grid.options.total_registros'|trans(locale = userLocate) ~ pagination.getTotalItemCount }}
                     </div>   
                 </div>
             </div>

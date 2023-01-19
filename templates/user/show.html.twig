@@ -1,22 +1,22 @@
 {% extends 'app.html.twig' %}
 
 {% block title %}
-    Visualizar Usuário
+    {{ 'title.show.user'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block pageName %}
-    Visualizar Usuário
+    {{ 'title.show.user'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block breadcrumbName %}
     <li class="breadcrumb-item">
-        Usuário
+    {{ 'title.user'|trans(locale = userLocate) }}
     </li>
     <li class="breadcrumb-item">
-        Visualizar Usuário
+    {{ 'title.show.user'|trans(locale = userLocate) }}
     </li>
     <li class="breadcrumb-item active active">
-        {{ user.email }}
+        {{ user.nomeCompleto }}
     </li>
 {% endblock %}
 
@@ -25,7 +25,8 @@
     <div class="row">
         <div class="col-12 d-flex justify-content-end">
             <a href="{{ path('app_user_index') }}" class="btn btn-danger btn-sm text-white mb-2 shadow">
-                <i class="fa-solid fa-left-long"></i> Voltar
+                <i class="fa-solid fa-left-long"></i>
+                {{ 'grid.options.voltar'|trans(locale = userLocate) }}
             </a>
         </div>
     </div>

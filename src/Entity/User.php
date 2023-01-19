@@ -45,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
@@ -82,7 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): self
+    public function setRoles(?array $roles): self
     {
         $this->roles = $roles;
 
@@ -97,7 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
@@ -129,7 +129,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->nomeCompleto;
     }
 
-    public function setNomeCompleto(string $nomeCompleto): self
+    public function setNomeCompleto(?string $nomeCompleto): self
     {
         $this->nomeCompleto = $nomeCompleto;
 
@@ -141,7 +141,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->locate;
     }
 
-    public function setLocate(string $locate): self
+    public function setLocate(?string $locate): self
     {
         $this->locate = $locate;
 

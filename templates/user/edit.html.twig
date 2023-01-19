@@ -1,22 +1,22 @@
 {% extends 'app.html.twig' %}
 
 {% block title %}
-    Editar Usuário
+    {{ 'title.edit.user'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block pageName %}
-    Editar Usuário
+    {{ 'title.edit.user'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block breadcrumbName %}
     <li class="breadcrumb-item">
-        Usuário
+        {{ 'title.user'|trans(locale = userLocate) }}
     </li>
     <li class="breadcrumb-item">
-        Editar Usuário
+        {{ 'title.edit.user'|trans(locale = userLocate) }}
     </li>
     <li class="breadcrumb-item active active">
-        {{ user.email }}
+        {{ user.nomeCompleto }}
     </li>
 {% endblock %}
 

@@ -1,19 +1,19 @@
 {% extends 'app.html.twig' %}
 
 {% block title %}
-    Cadastrar Usuário
+    {{ 'title.cadastro.user'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block pageName %}
-    Cadastrar Usuário
+    {{ 'title.cadastro.user'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block breadcrumbName %}
     <li class="breadcrumb-item">
-        Usuário
+    {{ 'title.user'|trans(locale = userLocate) }}
     </li>
     <li class="breadcrumb-item active">
-        Cadastrar Usuário
+        {{ 'title.cadastro.user'|trans(locale = userLocate) }}
     </li>
 {% endblock %}
 

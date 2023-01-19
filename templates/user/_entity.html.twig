@@ -1,7 +1,13 @@
 <div class="row mb-2">
-    <div class="col-12">
+    <div class="col-6">
         <label class="form-label">
-            E-mail
+            {{ 'entity.user.nome_completo'|trans(locale = userLocate) }}
+        </label>
+        <input type="text" class="form-control" value="{{ user.nomeCompleto }}" disabled/>
+    </div>
+    <div class="col-6">
+        <label class="form-label">
+            {{ 'entity.user.email'|trans(locale = userLocate) }}
         </label>
         <input type="text" class="form-control" value="{{ user.email }}" disabled/>
     </div>
@@ -9,7 +15,7 @@
 <div class="row mb-2">
     <div class="col-6">
         <label class="form-label">
-            Permissões
+            {{ 'entity.user.roles'|trans(locale = userLocate) }}
         </label>
 
         <br />
@@ -22,7 +28,7 @@
     </div>
      <div class="col-6">
         <label class="form-label">
-            Tradução
+            {{ 'entity.user.locate'|trans(locale = userLocate) }}
         </label>
 
         <br />

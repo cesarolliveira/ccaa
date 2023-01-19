@@ -1,16 +1,16 @@
 {% extends 'app.html.twig' %}
 
 {% block title %}
-    Usuários
+    {{ 'title.user'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block pageName %}
-    Usuários
+    {{ 'title.user'|trans(locale = userLocate) }}
 {% endblock %}
 
 {% block breadcrumbName %}
     <li class="breadcrumb-item active">
-        Usuários
+        {{ 'title.user'|trans(locale = userLocate) }}
     </li>
 {% endblock %}
 
@@ -20,7 +20,7 @@
        <div class="col-12 d-flex justify-content-end">
             <a href="{{ path('app_user_new') }}" class="btn btn-info btn-sm text-white mb-2 shadow">
                 <i class="fa-solid fa-plus"></i> 
-                Cadastrar
+                {{ 'grid.options.novo'|trans(locale = userLocate) }}
             </a>
         </div>
     </div>
@@ -35,16 +35,19 @@
                         <thead>
                             <tr>
                                 <th class="align-middle">
-                                    E-mail
+                                    {{ 'grid.columns.nomeCompleto'|trans(locale = userLocate) }}
+                                </th>
+                                <th class="align-middle">
+                                    {{ 'grid.columns.email'|trans(locale = userLocate) }}
                                 </th>
                                 <th class="text-center align-middle">
-                                    Permissões
+                                    {{ 'grid.columns.role'|trans(locale = userLocate) }}
                                 </th>
                                 <th class="text-center align-middle">
-                                    Tradução
+                                    {{ 'grid.columns.locate'|trans(locale = userLocate) }}
                                 </th>
                                 <th class="text-center align-middle">
-                                    Opções
+                                    {{ 'grid.columns.opcoes'|trans(locale = userLocate) }}
                                 </th>
                             </tr>
                         </thead>
@@ -52,25 +55,34 @@
                         {% for item in pagination %}
                             <tr>
                                 <td class="align-middle">
+                                    {{ item.nomeCompleto }}
+                                </td>
+                                <td class="align-middle">
                                     {{ item.email }}
                                 </td>
                                 <td class="text-center align-middle">
                                     {% for item in item.roles %}
                                         {% if item != 'ROLE_USER' %}
-                                            <span class="badge bg-secondary">{{ item|replace({'ROLE_': ''}) }}</span>
+                                            <span class="badge bg-secondary">
+                                                {{ item|replace({'ROLE_': ''}) }}
+                                            </span>
                                         {% endif %}
                                     {% endfor %}
                                 </td>
                                 <td class="text-center align-middle">
-                                    <span class="badge bg-secondary">{{ item.locate == 'pt_BR' ? 'BR' : 'PY' }}</span>
+                                    <span class="badge bg-secondary">
+                                        {{ item.locate == 'pt_BR' ? 'BR' : 'PY' }}
+                                    </span>
                                 </td>
                                 <td class="text-center align-middle">
                                     <div class="btn-group btn-group-sm mt-1 mb-1 shadow-sm" role="group">
                                         <a class="btn btn-info text-white" href="{{ path('app_user_show', {'id': item.id}) }}">
-                                            <i class="fa-solid fa-eye"></i> Visualizar
+                                            <i class="fa-solid fa-eye"></i>
+                                            {{ 'grid.options.visualizar'|trans(locale = userLocate) }}
                                         </a>
                                         <a class="btn btn-info text-white" href="{{ path('app_user_edit', {'id': item.id}) }}">
-                                            <i class="fa-solid fa-pen-to-square"></i> Editar
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            {{ 'grid.options.editar'|trans(locale = userLocate) }}
                                         </a>
                                         {% include 'user/_delete_form.html.twig' with {'id': item.id} %}
                                     </div>
@@ -79,7 +91,7 @@
                         {% else %}
                             <tr>
                                 <td class="text-center" colspan="3">
-                                    Nenhum registro encontrado!
+                                    {{ 'grid.options.null_registros'|trans(locale = userLocate) }}
                                 </td>
                             </tr>
                         {% endfor %}
@@ -93,7 +105,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="count">
-                        {{ 'Total de registros: ' ~ pagination.getTotalItemCount }}
+                        {{ 'grid.options.total_registros'|trans(locale = userLocate) ~ pagination.getTotalItemCount }}
                     </div>   
                 </div>
             </div>

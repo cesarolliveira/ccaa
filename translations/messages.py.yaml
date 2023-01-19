@@ -13,9 +13,42 @@ grid.options.editar: Editar
 grid.options.excluir: Eliminar
 grid.options.novo: Nuevo
 grid.options.continuar: Continuar
+grid.options.null_registros: No se encontraron registros
+grid.options.total_registros: 'Registros totales: '
+grid.options.voltar: Volver
 grid.columns.situacao: Situación
 grid.columns.opcoes: Opciones
-grid.columns.voltar: Volver
+
+#MESSAGE
+message.valor_nao_informado: Valor no informado
+message.select_option: Seleccione una opción
+
+# PAGE USER
+title.user: Usuario
+title.show.user: Mira Usuario
+title.edit.user: Editar Usuario
+title.cadastro.user: Cadastro de Usuario
+subtitle.cadastro.user: Información del usuario
+grid.columns.nomeCompleto: Nombre
+grid.columns.user: Usuario
+grid.columns.email: E-mail
+grid.columns.role: Permisos
+grid.columns.locate: Traducción
+entity.user: Usuario
+entity.user.title: Información del Usuario
+entity.user.nome_completo: Nombre
+entity.user.email: E-mail
+entity.user.roles: Permisos
+entity.user.locate: Traducción
+entity.user.senha: Senha
+
+# MESSAGE ERROR USER
+message.error.user.nome_completo: Por favor, insira el nombre
+message.error.user.email.not_null: Por favor, insira el e-mail
+message.error.user.email.invalid: Por favor, insira un e-mail válido
+message.error.user.roles: Por favor, seleccione los permisos
+message.error.user.locate: Por favor, seleccione la traducción
+message.error.user.senha: Por favor, insira la contraseña
 
 # PAGE ALUNO
 title.aluno: Alunno
@@ -45,10 +78,6 @@ entity.aluno.rg_responsavel.py: C.I del responsable
 entity.aluno.rg_responsavel.br: RG del responsable
 entity.aluno.rg_responsavel.py_br: RG / C.I del responsable
 entity.aluno.situacao: Situación
-
-#MESSAGE
-message.valor_nao_informado: Valor no informado
-message.select_option: Seleccione una opción
 
 # MESSAGE ERROR ALUNO
 message.error.subtitle.cadastro.aluno: Por favor, seleccione el tipo de registro

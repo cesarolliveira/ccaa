@@ -12,10 +12,28 @@
             <div class="card-body">
                 {{ form_start(form) }}
                     <div class="row">
-                        <div class="col-12">
-                            {{ form_widget(form) }}
+                        <div class="col-6">
+                            {{ form_row(form.nomeCompleto) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.email) }}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form_row(form.roles) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(form.locate) }}
+                        </div>
+                    </div>
+                    {% if form.password.vars.data is defined and form.password.vars.data == null %}
+                        <div class="row">
+                            <div class="col-12">
+                                {{ form_row(form.password) }}
+                            </div>
+                        </div>
+                    {% endif %}
                     <div class="row">
                         <div class="col-12 text-center">
                             <button class="btn btn-info text-white shadow-sm">
