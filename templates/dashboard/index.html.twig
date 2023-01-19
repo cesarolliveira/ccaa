@@ -176,8 +176,11 @@
                                             {{ item.vencimento|date('d/m/Y') }}
                                         </td>
                                         <td class="text-center align-middle">
-                                            {{ item.valor|number_format(2, ',', '.') }}
-                                        </td>
+                                            {% if item.aluno.nacionalidade == 'brasil' %}
+                                                {{ 'R$ ' ~ item.valor|number_format(2, ',', '.') }}
+                                            {% else %}
+                                                {{ '₲ ' ~ item.valor|number_format(3, ',', '.') }}
+                                            {% endif %}                                        </td>
                                         <td class="text-center align-middle">
                                             {% if item.situacao == constant('App\\Enum\\SituacaoLancamentoEnum::PENDENTE') %}
                                                 <span class="badge bg-warning">PENDENTE</span>
