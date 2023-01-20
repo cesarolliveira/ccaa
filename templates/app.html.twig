@@ -30,6 +30,24 @@
                             {% block breadcrumbName %}{% endblock %}                            
                         </ol>
 
+                        {% for success in app.flashes('success') %}
+                            <div class="alert alert-success" role="alert">
+                                {{ success }}
+                            </div>
+                        {% endfor %}
+
+                        {% for error in app.flashes('error') %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+
+                        {% for warning in app.flashes('warning') %}
+                            <div class="alert alert-warning" role="alert">
+                                {{ warning }}
+                            </div>
+                        {% endfor %}
+
                         {% block content %}
                         {% endblock %}
 
