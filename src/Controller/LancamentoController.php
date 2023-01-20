@@ -51,6 +51,7 @@ class LancamentoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->lancamentoService->cadastrar($lancamento);
+            $this->addFlash('success', 'Lançamento cadastrado com sucesso.');
 
             return $this->redirectToRoute('app_lancamento_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -87,6 +88,7 @@ class LancamentoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->lancamentoService->editar($lancamento);
+            $this->addFlash('success', 'Lançamento editado com sucesso.');
 
             return $this->redirectToRoute('app_lancamento_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -101,12 +103,15 @@ class LancamentoController extends AbstractController
     #[Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_GERENTE')")]
     public function delete(Request $request, Lancamento $lancamento): Response
     {
-        if (!$this->lancamentoService->canExcluir($this->getUser())) {
-            throw $this->createAccessDeniedException();
+        if (!$this->lancamentoService->canExcluir($lancamento)) {
+            $this->addFlash('error', 'Não é possível excluir este lançamento.');
+
+            return $this->redirectToRoute('app_lancamento_index', [], Response::HTTP_SEE_OTHER);
         }
 
         if ($this->isCsrfTokenValid('delete'.$lancamento->getId(), $request->request->get('_token'))) {
             $this->lancamentoService->excluir($lancamento);
+            $this->addFlash('success', 'Lançamento excluído com sucesso.');
         }
 
         return $this->redirectToRoute('app_lancamento_index', [], Response::HTTP_SEE_OTHER);
