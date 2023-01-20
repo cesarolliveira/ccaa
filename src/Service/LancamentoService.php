@@ -43,8 +43,12 @@ class LancamentoService
         return true;
     }
 
-    public function canExcluir(User $user): bool
+    public function canExcluir(Lancamento $lancamento): bool
     {
+        if ($lancamento->getContrato()) {
+            return false;
+        }
+
         return true;
     }
 
