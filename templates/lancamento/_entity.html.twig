@@ -37,7 +37,7 @@
         <label class="form-label">
             Valor
         </label>
-        {% if lancamento.contrato.aluno.nacionalidade == 'brasil' %}
+        {% if lancamento.moeda == constant('App\\Enum\\MoedaEnum::BRL') %}
             <input type="text" class="form-control" value="{{ 'R$ ' ~ lancamento.valor|number_format(2, ',', '.') }}" disabled/>
         {% else %}
             <input type="text" class="form-control" value="{{ '₲ ' ~ lancamento.valor|number_format(3, ',', '.') }}" disabled/>

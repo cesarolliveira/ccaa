@@ -66,7 +66,7 @@
                                     {{ item.vencimento|date('d/m/Y') }}
                                 </td>
                                 <td class="text-center align-middle">
-                                    {% if item.aluno.nacionalidade == 'brasil' %}
+                                    {% if item.moeda == constant('App\\Enum\\MoedaEnum::BRL') %}
                                         {{ 'R$ ' ~ item.valor|number_format(2, ',', '.') }}
                                     {% else %}
                                         {{ '₲ ' ~ item.valor|number_format(3, ',', '.') }}

@@ -9,6 +9,7 @@ use App\Enum\SituacaoLancamentoEnum;
 use App\Repository\LancamentoRepository;
 
 #[ORM\Entity(repositoryClass: LancamentoRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Lancamento
 {
     #[ORM\Id]
@@ -49,6 +50,12 @@ class Lancamento
     #[ORM\ManyToOne(inversedBy: 'lancamentos')]
     private ?Aluno $aluno = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $modifiedOn = null;
+
     public function __construct()
     {
         $this->situacao = SituacaoLancamentoEnum::PENDENTE;
@@ -88,7 +95,7 @@ class Lancamento
         return $this->formaPagamento;
     }
 
-    public function setFormaPagamento(string $formaPagamento): self
+    public function setFormaPagamento(?string $formaPagamento): self
     {
         $this->formaPagamento = $formaPagamento;
 
@@ -100,7 +107,7 @@ class Lancamento
         return $this->descricao;
     }
 
-    public function setDescricao(string $descricao): self
+    public function setDescricao(?string $descricao): self
     {
         $this->descricao = $descricao;
 
@@ -189,5 +196,41 @@ class Lancamento
         $this->moeda = $moeda;
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getModifiedOn(): ?\DateTimeInterface
+    {
+        return $this->modifiedOn;
+    }
+
+    public function setModifiedOn(?\DateTimeInterface $modifiedOn): self
+    {
+        $this->modifiedOn = $modifiedOn;
+
+        return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setModifiedOnValue(): void
+    {
+        $this->modifiedOn = new \DateTimeImmutable();
     }
 }
