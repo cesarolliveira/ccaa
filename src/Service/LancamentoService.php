@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Entity\Lancamento;
+use App\Enum\SituacaoLancamentoEnum;
 use App\Repository\LancamentoRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,6 +53,15 @@ class LancamentoService
         return true;
     }
 
+    public function canPagar(Lancamento $lancamento): bool
+    {
+        if (SituacaoLancamentoEnum::PENDENTE === $lancamento->getSituacao()) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function listar(Request $request): PaginationInterface
     {
         return $this->paginator->paginate(
@@ -74,5 +84,11 @@ class LancamentoService
     public function excluir(Lancamento $lancamento): void
     {
         $this->lancamentoRepository->remove($lancamento, true);
+    }
+
+    public function baixarLancamento(Lancamento $lancamento): void
+    {
+        $lancamento->setSituacao(SituacaoLancamentoEnum::PAGO);
+        $this->lancamentoRepository->save($lancamento, true);
     }
 }

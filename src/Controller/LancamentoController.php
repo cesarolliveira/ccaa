@@ -116,4 +116,22 @@ class LancamentoController extends AbstractController
 
         return $this->redirectToRoute('app_lancamento_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}/pagar', name: 'app_lancamento_baixar_lancamento', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function pagarLancamento(Request $request, Lancamento $lancamento): Response
+    {
+        if (!$this->lancamentoService->canPagar($lancamento)) {
+            $this->addFlash('error', 'Não foi possível pagar este lançamento.');
+
+            return $this->redirectToRoute('app_lancamento_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        if ($this->isCsrfTokenValid('baixar'.$lancamento->getId(), $request->request->get('_token'))) {
+            $this->lancamentoService->baixarLancamento($lancamento);
+            $this->addFlash('success', 'Lançamento baixado com sucesso.');
+        }
+
+        return $this->redirectToRoute('app_lancamento_index', [], Response::HTTP_SEE_OTHER);
+    }
 }
