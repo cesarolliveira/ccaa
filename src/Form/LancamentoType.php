@@ -82,12 +82,6 @@ class LancamentoType extends AbstractType
                 'months' => range(1, 12),
                 'years' => range(date('Y') - 123, date('Y')),
                 'data' => new \DateTime('now'),
-                'constraints' => [
-                    new GreaterThan([
-                        'value' => new \DateTime('-1 day'),
-                        'message' => 'A data de vencimento deve ser maior que o dia atual',
-                    ]),
-                ],
             ])
             ->add('valor', NumberType::class, [
                 'label' => 'Valor',
@@ -184,7 +178,7 @@ class LancamentoType extends AbstractType
             ]);
         }
 
-        if ($lancamento->getId() && $lancamento->getAluno()) {
+        if ($lancamento->getId() && $lancamento->getContrato()) {
             $form->add('aluno', EntityType::class, [
                 'class' => Aluno::class,
                 'choice_label' => function ($aluno) {
