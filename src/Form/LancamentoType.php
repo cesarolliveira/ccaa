@@ -145,6 +145,16 @@ class LancamentoType extends AbstractType
             ]);
         }
 
+        if ($lancamento->getId() && $lancamento->getMoeda()) {
+            $form->add('moeda', ChoiceType::class, [
+                'choices' => MoedaEnum::getChoices(),
+                'attr' => [
+                    'class' => 'js-choice',
+                ],
+                'disabled' => true,
+            ]);
+        }
+
         if ($lancamento->getId() && $lancamento->getContrato()) {
             $form->add('moeda', ChoiceType::class, [
                 'choices' => MoedaEnum::getChoices(),

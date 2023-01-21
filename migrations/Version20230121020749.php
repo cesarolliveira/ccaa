@@ -10,22 +10,22 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230120021832 extends AbstractMigration
+final class Version20230121020749 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Implementa o campo created_at e modified_on na tabela lancamento';
+        return 'Ajusta o campo desconto para aceitar valores nulos';
     }
 
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE lancamento ADD created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', ADD modified_on DATETIME DEFAULT NULL');
+        $this->addSql('ALTER TABLE contrato CHANGE desconto desconto NUMERIC(15, 3) DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE lancamento DROP created_at, DROP modified_on');
+        $this->addSql('ALTER TABLE contrato CHANGE desconto desconto NUMERIC(15, 3) NOT NULL');
     }
 }
