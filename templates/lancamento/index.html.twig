@@ -84,7 +84,7 @@
                                 <td class="text-center align-middle">
                                     <div class="btn-group btn-group-sm mt-1 mb-1 shadow-sm" role="group">
                                         {% if item.situacao == constant('App\\Enum\\SituacaoLancamentoEnum::PENDENTE') %}
-                                            {% include 'lancamento/_pagar_form.html.twig' with {'id': item.id} %}                  
+                                            {% include 'lancamento/_baixar_form.html.twig' with {'id': item.id} %}                  
                                         {% endif %}
                                         <a class="btn btn-info text-white" href="{{ path('app_lancamento_show', {'id': item.id}) }}">
                                             <i class="fa-solid fa-eye"></i> Visualizar
