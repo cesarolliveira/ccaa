@@ -10,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CursoRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Curso
 {
     #[ORM\Id]
@@ -28,6 +29,12 @@ class Curso
 
     #[ORM\OneToMany(mappedBy: 'curso', targetEntity: Contrato::class)]
     private Collection $contratos;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $modifiedOn = null;
 
     public function __construct()
     {
@@ -104,5 +111,41 @@ class Curso
         }
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getModifiedOn(): ?\DateTimeInterface
+    {
+        return $this->modifiedOn;
+    }
+
+    public function setModifiedOn(?\DateTimeInterface $modifiedOn): self
+    {
+        $this->modifiedOn = $modifiedOn;
+
+        return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setModifiedOnValue(): void
+    {
+        $this->modifiedOn = new \DateTimeImmutable();
     }
 }
