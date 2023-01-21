@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 #[UniqueEntity(fields: ['email'], message: 'Já existe uma conta com este e-mail')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -34,6 +36,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $nomeCompleto = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $modifiedOn = null;
 
     public function getId(): ?int
     {
@@ -146,5 +154,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->locate = $locate;
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getModifiedOn(): ?\DateTimeInterface
+    {
+        return $this->modifiedOn;
+    }
+
+    public function setModifiedOn(?\DateTimeInterface $modifiedOn): self
+    {
+        $this->modifiedOn = $modifiedOn;
+
+        return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setModifiedOnValue(): void
+    {
+        $this->modifiedOn = new \DateTimeImmutable();
     }
 }
