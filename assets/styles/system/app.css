@@ -11720,3 +11720,7 @@ input[value="Valor não informado"] {
   color: red;
   font-weight: 400;
 }
+
+.choices[data-type*="select-one"] {
+  margin-bottom: 4px !important;
+}
