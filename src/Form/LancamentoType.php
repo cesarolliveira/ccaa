@@ -82,6 +82,12 @@ class LancamentoType extends AbstractType
                 'months' => range(1, 12),
                 'years' => range(date('Y') - 123, date('Y')),
                 'data' => new \DateTime('now'),
+                'constraints' => [
+                    new GreaterThan([
+                        'value' => new \DateTime('-1 day'),
+                        'message' => 'A data de vencimento deve ser maior que o dia atual',
+                    ]),
+                ],
             ])
             ->add('valor', NumberType::class, [
                 'label' => 'Valor',
