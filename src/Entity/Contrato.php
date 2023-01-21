@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ContratoRepository;
 
 #[ORM\Entity(repositoryClass: ContratoRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Contrato
 {
     #[ORM\Id]
@@ -34,7 +35,7 @@ class Contrato
     #[ORM\Column(length: 255)]
     private ?string $formaPagamento = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 15, scale: 3)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 15, scale: 3, nullable: true)]
     private ?string $desconto = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 15, scale: 3)]
@@ -51,6 +52,12 @@ class Contrato
 
     #[ORM\Column(length: 255)]
     private ?string $descricao = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $modifiedOn = null;
 
     public function __construct()
     {
@@ -116,7 +123,7 @@ class Contrato
         return $this->desconto;
     }
 
-    public function setDesconto(string $desconto): self
+    public function setDesconto(?string $desconto): self
     {
         $this->desconto = $desconto;
 
@@ -211,5 +218,41 @@ class Contrato
         $this->moeda = $moeda;
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getModifiedOn(): ?\DateTimeInterface
+    {
+        return $this->modifiedOn;
+    }
+
+    public function setModifiedOn(?\DateTimeInterface $modifiedOn): self
+    {
+        $this->modifiedOn = $modifiedOn;
+
+        return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setModifiedOnValue(): void
+    {
+        $this->modifiedOn = new \DateTimeImmutable();
     }
 }
