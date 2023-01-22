@@ -1,127 +1,178 @@
 {% extends 'app.html.twig' %}
 
 {% block title %}
-    Lançamentos
+	Lançamentos
 {% endblock %}
 
 {% block pageName %}
-    Lançamentos
+	Lançamentos
 {% endblock %}
 
 {% block breadcrumbName %}
-    <li class="breadcrumb-item active">
-        Lançamentos
-    </li>
+	<li class="breadcrumb-item active">
+		Lançamentos
+	</li>
 {% endblock %}
 
 {% block content %}
 
-    <div class="row">
-       <div class="col-12 d-flex justify-content-end">
-            <a href="{{ path('app_lancamento_new') }}" class="btn btn-info btn-sm text-white mb-2 shadow">
-                <i class="fa-solid fa-plus"></i> Cadastrar
-            </a>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-12 d-flex justify-content-end">
+			<a href="{{ path('app_lancamento_new') }}" class="btn btn-info btn-sm text-white mb-2 shadow">
+				<i class="fa-solid fa-plus"></i>
+				Cadastrar
+			</a>
+		</div>
+	</div>
 
-    <div class="row">
-       <div class="col-12">
-            <div class="card border-0 shadow">
-                <div class="card-body">
-                    <table class="table table-hover table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Descrição
-                                </th>
-                                <th class="text-center align-middle">
-                                    Lançamento
-                                </th>
-                                <th class="text-center align-middle">
-                                    Vencimento
-                                </th>
-                                <th class="text-center align-middle">
-                                    Valor
-                                </th>
-                                <th class="text-center align-middle">
-                                    Situação
-                                </th>
-                                <th class="text-center align-middle">
-                                    Opções
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for item in pagination %}
-                            <tr>
-                                <td class="align-middle">
-                                    {{ item.descricao }}
-                                </td>
-                                <td class="text-center align-middle">
-                                    {{ item.tipoLancamento == constant('App\\Enum\\TipoLancamentoEnum::RECEITA') ? '<span class="badge bg-success">RECEITA</span>' : '<span class="badge bg-danger">DESPESA</span>' }}
-                                </td>
-                                <td class="text-center align-middle">
-                                    {{ item.vencimento|date('d/m/Y') }}
-                                </td>
-                                <td class="text-center align-middle">
-                                    {% if item.moeda == constant('App\\Enum\\MoedaEnum::BRL') %}
-                                        {{ 'R$ ' ~ item.valor|number_format(2, ',', '.') }}
-                                    {% else %}
-                                        {{ '₲ ' ~ item.valor|number_format(3, ',', '.') }}
-                                    {% endif %}
-                                </td>
-                                <td class="text-center align-middle">
-                                    {% if item.situacao == constant('App\\Enum\\SituacaoLancamentoEnum::PENDENTE') %}
-                                        <span class="badge bg-warning">PENDENTE</span>
-                                    {% elseif item.situacao == constant('App\\Enum\\SituacaoLancamentoEnum::PAGO') %}
-                                        <span class="badge bg-success">PAGO</span>
-                                    {% elseif item.situacao == constant('App\\Enum\\SituacaoLancamentoEnum::CANCELADO') %}
-                                        <span class="badge bg-success">CANCELADO</span>
-                                    {% endif %}
-                                </td>
-                                <td class="text-center align-middle">
-                                    <div class="btn-group btn-group-sm mt-1 mb-1 shadow-sm" role="group">
-                                        {% if item.situacao == constant('App\\Enum\\SituacaoLancamentoEnum::PENDENTE') %}
-                                            {% include 'lancamento/_baixar_form.html.twig' with {'id': item.id} %}                  
-                                        {% endif %}
-                                        <a class="btn btn-info text-white" href="{{ path('app_lancamento_show', {'id': item.id}) }}">
-                                            <i class="fa-solid fa-eye"></i> Visualizar
-                                        </a>
-                                        {% if item.situacao != constant('App\\Enum\\SituacaoLancamentoEnum::PAGO') or item.contrato == null %}
-                                            <a class="btn btn-info text-white" href="{{ path('app_lancamento_edit', {'id': item.id}) }}">
-                                                <i class="fa-solid fa-pen-to-square"></i> Editar
-                                            </a>
-                                        {% endif %}
-                                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GERENTE') %}
-                                            {% if item.contrato is defined and item.contrato == null %}
-                                                {% include 'lancamento/_delete_form.html.twig' with {'id': item.id} %}                  
-                                            {% endif %}                                            
-                                        {% endif %}
-                                    </div>
-                                </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td class="text-center" colspan="7">
-                                    Nenhum registro encontrado!
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                    <div class="d-flex justify-content-center">
-                        <div class="navigation">
-                            {{ knp_pagination_render(pagination) }}
-                        </div> 
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="count">
-                        {{ 'Total de registros: ' ~ pagination.getTotalItemCount }}
-                    </div>   
-                </div>
-            </div>
-        </div>
-    </div>
+	{% include 'lancamento/_filter_form.html.twig' with { 'form' : form } %}
 
+	<div class="row">
+		<div class="col-12">
+			<div class="card border-0 shadow mb-5">
+				<div class="card-body">
+					<table class="table table-hover table-striped table-sm">
+						<thead>
+							<tr>
+								<th class="align-middle">
+									{{ knp_pagination_sortable
+										(
+											pagination,
+											'Descrição',
+											'lancamento.descricao'
+										) 
+									}}
+									<i class="fa-solid fa-sort"></i>
+								</th>
+								<th class="text-center align-middle">
+									{{ knp_pagination_sortable
+										(
+											pagination,
+											'Lançamento',
+											'lancamento.tipoLancamento'
+										) 
+									}}
+									<i class="fa-solid fa-sort"></i>
+								</th>
+								<th class="text-center align-middle">
+									{{ knp_pagination_sortable
+										(
+											pagination,
+											'Vencimento',
+											'lancamento.vencimento'
+										) 
+									}}
+									<i class="fa-solid fa-sort"></i>
+								</th>
+								<th class="text-center align-middle">
+									{{ knp_pagination_sortable
+										(
+											pagination,
+											'Valor',
+											'lancamento.valor'
+										) 
+									}}
+									<i class="fa-solid fa-sort"></i>
+								</th>
+								<th class="text-center align-middle">
+									{{ knp_pagination_sortable
+										(
+											pagination,
+											'Situação',
+											'lancamento.situacao'
+										) 
+									}}
+									<i class="fa-solid fa-sort"></i>
+								</th>
+								<th class="text-center align-middle">
+									Opções
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in pagination %}
+								<tr>
+									<td class="align-middle">
+										{{ item.descricao }}
+									</td>
+									<td class="text-center align-middle">
+										{{ item.tipoLancamento == constant('App\\Enum\\TipoLancamentoEnum::RECEITA') ? '<span class="badge bg-success">RECEITA</span>' : '<span class="badge bg-danger">DESPESA</span>' }}
+									</td>
+									<td class="text-center align-middle">
+										{{ item.vencimento|date('d/m/Y') }}
+									</td>
+									<td class="text-center align-middle">
+										{% if item.moeda == constant('App\\Enum\\MoedaEnum::BRL') %}
+											{{ 'R$ ' ~ item.valor|number_format(2, ',', '.') }}
+										{% else %}
+											{{ '₲ ' ~ item.valor|number_format(3, ',', '.') }}
+										{% endif %}
+									</td>
+									<td class="text-center align-middle">
+										{% if item.situacao == constant('App\\Enum\\SituacaoLancamentoEnum::PENDENTE') %}
+											<span class="badge bg-warning">
+												PENDENTE
+											</span>
+										{% elseif item.situacao == constant('App\\Enum\\SituacaoLancamentoEnum::PAGO') %}
+											<span class="badge bg-success">
+												PAGO
+											</span>
+										{% elseif item.situacao == constant('App\\Enum\\SituacaoLancamentoEnum::CANCELADO') %}
+											<span class="badge bg-success">
+												CANCELADO
+											</span>
+										{% endif %}
+									</td>
+									<td class="text-center align-middle">
+										<div class="btn-group btn-group-sm mt-1 mb-1 shadow-sm" role="group">
+											{% if item.situacao == constant('App\\Enum\\SituacaoLancamentoEnum::PENDENTE') %}
+												{% include 'lancamento/_baixar_form.html.twig' with {'id': item.id} %}
+											{% endif %}
+											<a class="btn btn-info text-white" href="{{ path('app_lancamento_show', {'id': item.id}) }}">
+												<i class="fa-solid fa-eye"></i>
+												Visualizar
+											</a>
+											{% if item.situacao != constant('App\\Enum\\SituacaoLancamentoEnum::PAGO') %}
+												<a class="btn btn-info text-white" href="{{ path('app_lancamento_edit', {'id': item.id}) }}">
+													<i class="fa-solid fa-pen-to-square"></i>
+													Editar
+												</a>
+											{% endif %}
+											{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GERENTE') %}
+												{% if item.contrato is defined and item.contrato == null %}
+													{% include 'lancamento/_delete_form.html.twig' with {'id': item.id} %}
+												{% endif %}
+											{% endif %}
+										</div>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td class="text-center" colspan="7">
+										Nenhum registro encontrado!
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<div class="d-flex justify-content-center">
+						<div class="navigation">
+							{{ knp_pagination_render(pagination) }}
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<div class="count">
+						{{ 'Total de registros: ' ~ pagination.getTotalItemCount }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('js/lancamento/index') }}
 {% endblock %}

@@ -50,6 +50,7 @@ Encore
     .addEntry('js/user/edit', './assets/js/user/edit.js')
     .addEntry('js/contrato/new', './assets/js/contrato/new.js')
     .addEntry('js/contrato/edit', './assets/js/contrato/edit.js')
+    .addEntry('js/lancamento/index', './assets/js/lancamento/index.js')
     .addEntry('js/lancamento/new', './assets/js/lancamento/new.js')
     .addEntry('js/lancamento/edit', './assets/js/lancamento/edit.js')
     .addEntry('js/curso/edit', './assets/js/curso/edit.js')

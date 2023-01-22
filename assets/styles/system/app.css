@@ -11724,3 +11724,57 @@ input[value="Valor não informado"] {
 .choices[data-type*="select-one"] {
   margin-bottom: 4px !important;
 }
+
+.search-filter-button {
+  margin-top: 32px !important;
+}
+
+input[name="submit-filter"] {
+  margin-left: 10px !important;
+}
+
+.form-control {
+  border-radius: 0px !important;
+  height: 46px !important;
+}
+
+.form-select {
+  height: 46px !important;
+  border-radius: 0px !important;
+}
+
+.choices__inner {
+  border-radius: 0px !important;
+}
+
+legend.col-form-label {
+  padding-top: 0px !important;
+}
+
+table.table.table-hover.table-striped.table-sm thead tr th.align-middle a.sortable {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+table.table.table-hover.table-striped.table-sm thead tr th.align-middle a.desc {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+table.table.table-hover.table-striped.table-sm thead tr th.align-middle a.asc {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+table.table.table-hover.table-striped.table-sm thead tr th.align-middle a.desc:hover {
+  color: #06357a !important;
+}
+
+table.table.table-hover.table-striped.table-sm thead tr th.align-middle a.asc:hover {
+  color: #06357a !important;
+}
+
+.page-item.active .page-link, .page-item.active .dataTable-pagination a, .dataTable-pagination .page-item.active a, .dataTable-pagination li.active .page-link, .dataTable-pagination li.active a {
+  background-color: #31d2f2 !important;
+  border-color: #31d2f2 !important;
+}

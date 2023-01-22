@@ -6,9 +6,11 @@ use App\Entity\User;
 use App\Entity\Lancamento;
 use App\Enum\SituacaoLancamentoEnum;
 use App\Repository\LancamentoRepository;
+use App\Form\Filters\LancamentoFilterType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Knp\Component\Pager\Pagination\PaginationInterface;
+use Symfony\Component\Form\FormFactoryInterface;
+use Lexik\Bundle\FormFilterBundle\Filter\FilterBuilderUpdater;
 
 class LancamentoService
 {
@@ -16,12 +18,20 @@ class LancamentoService
 
     private $lancamentoRepository;
 
+    private $formFactory;
+
+    private $filterBuilderUpdater;
+
     public function __construct(
         PaginatorInterface $paginator,
-        LancamentoRepository $lancamentoRepository
+        LancamentoRepository $lancamentoRepository,
+        FormFactoryInterface $formFactory,
+        FilterBuilderUpdater $filterBuilderUpdater
     ) {
         $this->paginator = $paginator;
         $this->lancamentoRepository = $lancamentoRepository;
+        $this->formFactory = $formFactory;
+        $this->filterBuilderUpdater = $filterBuilderUpdater;
     }
 
     public function canListar(User $user): bool
@@ -62,13 +72,33 @@ class LancamentoService
         return false;
     }
 
-    public function listar(Request $request): PaginationInterface
+    public function listar(Request $request): array
     {
-        return $this->paginator->paginate(
-            $this->lancamentoRepository->findAll(),
+        $queryBuilder = $this->lancamentoRepository->createQueryBuilder('lancamento');
+
+        $form = $this->formFactory->create(LancamentoFilterType::class);
+
+        if ($request->query->has($form->getName())) {
+            // manually bind values from the request
+            $form->submit($request->query->get($form->getName()));
+
+            // build the query from the given form object
+            $this->filterBuilderUpdater->addFilterConditions(
+                $form,
+                $queryBuilder,
+            );
+        }
+
+        $pagination = $this->paginator->paginate(
+            $queryBuilder,
             $request->query->getInt('page', 1),
             10,
         );
+
+        return [
+            'pagination' => $pagination,
+            'form_filter' => $form,
+        ];
     }
 
     public function cadastrar(Lancamento $lancamento): void

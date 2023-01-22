@@ -31,8 +31,11 @@ class LancamentoController extends AbstractController
             throw $this->createAccessDeniedException();
         }
 
+        $grid = $this->lancamentoService->listar($request);
+
         return $this->render('lancamento/index.html.twig', [
-            'pagination' => $this->lancamentoService->listar($request),
+            'pagination' => $grid['pagination'],
+            'form' => $grid['form_filter']->createView(),
         ]);
     }
 

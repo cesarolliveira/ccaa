@@ -255,7 +255,6 @@ class AlunoBrasilType extends AbstractType
                 ),
                 'choices' => SituacaoEnum::getChoices(),
                 'placeholder' => 'Selecione uma opção',
-
                 'attr' => [
                     'class' => 'js-choice',
                 ],
