@@ -1,0 +1,6 @@
+<form method="post" action="{{ path('app_lancamento_cancelar_lancamento', {'id': id}) }}" onsubmit="return confirm('Tem certeza de que deseja cancelar esse lançamento?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('cancelar' ~ id) }}">
+    <button class="btn btn-info btn-sm text-white shadow-sm">
+        <i class="fa-solid fa-xmark"></i> Cancelar
+    </button>
+</form>

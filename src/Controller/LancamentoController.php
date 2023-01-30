@@ -122,7 +122,7 @@ class LancamentoController extends AbstractController
 
     #[Route('/{id}/pagar', name: 'app_lancamento_baixar_lancamento', methods: ['POST'])]
     #[IsGranted('ROLE_USER')]
-    public function pagarLancamento(Request $request, Lancamento $lancamento): Response
+    public function baixarLancamento(Request $request, Lancamento $lancamento): Response
     {
         if (!$this->lancamentoService->canPagar($lancamento)) {
             $this->addFlash('error', 'Não foi possível pagar este lançamento.');
@@ -133,6 +133,24 @@ class LancamentoController extends AbstractController
         if ($this->isCsrfTokenValid('baixar'.$lancamento->getId(), $request->request->get('_token'))) {
             $this->lancamentoService->baixarLancamento($lancamento);
             $this->addFlash('success', 'Lançamento baixado com sucesso.');
+        }
+
+        return $this->redirectToRoute('app_lancamento_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/cancelar', name: 'app_lancamento_cancelar_lancamento', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function cancelarLancamento(Request $request, Lancamento $lancamento): Response
+    {
+        if (!$this->lancamentoService->canCancelar($lancamento)) {
+            $this->addFlash('error', 'Não foi possível cancelar este lançamento.');
+
+            return $this->redirectToRoute('app_lancamento_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        if ($this->isCsrfTokenValid('cancelar'.$lancamento->getId(), $request->request->get('_token'))) {
+            $this->lancamentoService->cancelarLancamento($lancamento);
+            $this->addFlash('success', 'Lançamento cancelado com sucesso.');
         }
 
         return $this->redirectToRoute('app_lancamento_index', [], Response::HTTP_SEE_OTHER);

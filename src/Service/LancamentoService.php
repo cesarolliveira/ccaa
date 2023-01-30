@@ -63,6 +63,15 @@ class LancamentoService
         return true;
     }
 
+    public function canCancelar(Lancamento $lancamento): bool
+    {
+        if (SituacaoLancamentoEnum::PENDENTE === $lancamento->getSituacao()) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function canPagar(Lancamento $lancamento): bool
     {
         if (SituacaoLancamentoEnum::PENDENTE === $lancamento->getSituacao()) {
@@ -119,6 +128,12 @@ class LancamentoService
     public function baixarLancamento(Lancamento $lancamento): void
     {
         $lancamento->setSituacao(SituacaoLancamentoEnum::PAGO);
+        $this->lancamentoRepository->save($lancamento, true);
+    }
+
+    public function cancelarLancamento(Lancamento $lancamento): void
+    {
+        $lancamento->setSituacao(SituacaoLancamentoEnum::CANCELADO);
         $this->lancamentoRepository->save($lancamento, true);
     }
 }

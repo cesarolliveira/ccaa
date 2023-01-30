@@ -118,7 +118,7 @@
 												PAGO
 											</span>
 										{% elseif item.situacao == constant('App\\Enum\\SituacaoLancamentoEnum::CANCELADO') %}
-											<span class="badge bg-success">
+											<span class="badge bg-danger">
 												CANCELADO
 											</span>
 										{% endif %}
@@ -137,6 +137,9 @@
 													<i class="fa-solid fa-pen-to-square"></i>
 													Editar
 												</a>
+											{% endif %}
+											{% if item.contrato is defined and item.contrato == null %}
+												{% include 'lancamento/_cancelar_form.html.twig' with {'id': item.id} %}
 											{% endif %}
 											{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GERENTE') %}
 												{% if item.contrato is defined and item.contrato == null %}
